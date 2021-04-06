@@ -9,6 +9,7 @@ import { SectionPageRoutingModule } from './section-routing.module';
 import { SectionPage } from './section.page';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { ItemsComponent } from 'src/app/components/items/items.component';
+import { RecordsComponent } from 'src/app/components/records/records.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { ItemsComponent } from 'src/app/components/items/items.component';
   declarations: [
     SectionPage,
     HomeComponent,
-    ItemsComponent
+    ItemsComponent,
+    RecordsComponent
   ]
 })
 export class SectionPageModule {}
