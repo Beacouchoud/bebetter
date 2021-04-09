@@ -38,3 +38,8 @@ ion-title {
   width: 100%;
   height: 100%;
 }
+
+ion-fab {
+  margin-bottom: var(--ion-margin, 24px);
+  padding-bottom: var(--ion-padding, 16px);
+}

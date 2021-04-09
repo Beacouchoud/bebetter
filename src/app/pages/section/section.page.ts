@@ -8,8 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SectionPage implements OnInit {
   public section: string;
+  title = "Home";
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    console.log("loviuuuu");
+  }
 
   ngOnInit() {
     this.section = this.activatedRoute.snapshot.paramMap.get('id');
