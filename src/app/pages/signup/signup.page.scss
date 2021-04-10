@@ -1,0 +1,68 @@
+
+ion-img {
+  width: 25%;
+  margin: auto;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ion-color-step-650);
+  font-size: large;
+}
+
+.signin-title {
+  color: var(--color-orange);
+
+  & p {
+    margin-block-start: 0.2em;
+  }
+  & ion-title {
+    font-size: x-large;
+    font-weight: bold;
+  }
+}
+
+.checkbox {
+   background-color: var(--color-orange);
+   --background-checked: var(--color-orange);
+   --border-color: var(--color-orange);
+   --border-color-checked: var(--color-orange);
+}
+
+// ion-item div.item-highligh .item-interactive .item-has-focus{
+//   --highlight-background: var(--color-pink) !important;
+//   --highlight-color-focused:red;
+// }
+
+
+ion-item.color-input {
+  // --border-color:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
+  --highlight-color-focused:  linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --highlight-height: 3px;
+}
+
+ion-text{
+  color: var(--color-orange);
+}
+
+ion-button {
+  --background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --color: #FFF;
+}
+
+p:not(.signin-title > *) {
+  color: gray;
+  text-align: center;
+  font-weight: bold;
+  & ion-text {
+    color: var(--color-pink);
+    font-weight: bold;
+
+  }
+}
+
+.footer-md::before {
+  height: 0px;
+  top: 0;
+}

@@ -5,7 +5,7 @@ import { SectionPage } from './pages/section/section.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'section',
+    redirectTo: 'signin',
     pathMatch: 'full'
   },
   {
@@ -14,12 +14,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/section/section.module').then( m => m.SectionPageModule)
   },
   {
-    path: 'singin',
-    loadChildren: () => import('./pages/singin/singin.module').then( m => m.SinginPageModule)
+    path: 'signin',
+    loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
   },
   {
-    path: 'singup',
-    loadChildren: () => import('./pages/singup/singup.module').then( m => m.SingupPageModule)
+    path: 'signup',
+    loadChildren: () => import('./pages/signup/signup.module').then( m => m.SignupPageModule)
   }
 
 
