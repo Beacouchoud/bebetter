@@ -6,7 +6,7 @@ h1 {
 }
 
 .signin-title {
-  color: var(--color-pink);
+  color: var(--color-orange);
 
   & p {
     margin-block-start: 0.2em;
@@ -19,17 +19,21 @@ h1 {
 
 ion-item.color-input {
   // --border-color:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
-  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --highlight-color-focused:  linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
   --highlight-height: 3px;
 }
 
 ion-text{
-  color: var(--color-pink);
+  color: var(--color-orange);
 }
 
 ion-button {
-  --background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
   --color: #FFF;
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
 }
 
 p:not(.signin-title > *) {
@@ -51,4 +55,9 @@ p:not(.signin-title > *) {
 ion-radio {
   --color: var(--color-pink);
   --color-checked: var(--color-pink);
+}
+
+ion-toggle {
+  --background-checked: #e08918;
+  --handle-background-checked: var(--color-orange);
 }

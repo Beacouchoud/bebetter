@@ -1,3 +1,91 @@
-<p>
-  new-item-form works!
-</p>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="signin-title ion-padding-start">
+        <ion-title class="ion-no-padding">New Item</ion-title>
+        <p>Dare to be better</p>
+      </ion-col>
+    </ion-row>
+    <form>
+      <ion-row>
+        <ion-col>
+          <ion-item class="color-input" >
+            <ion-label position="floating">Title</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="color-input">
+            <ion-label position="floating">Subtitle</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="color-input">
+            <ion-label position="floating">Description</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="color-input">
+            <ion-label position="floating">Units of Measurement</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list lines="none">
+          <ion-radio-group value="goal">
+            <ion-list-header>
+              <ion-label>Item Type</ion-label>
+            </ion-list-header>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label>Goal</ion-label>
+                  <ion-radio slot="start" value="goal"></ion-radio>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label>Follow-up</ion-label>
+                  <ion-radio slot="start" value="follow"></ion-radio>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item class="color-input item-has-placeholder">
+            <ion-label position="floating" style="font-size:14px;">Choose a start date</ion-label>
+            <ion-input type="date"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item class="color-input item-has-placeholder">
+            <ion-label position="floating" style="font-size:14px;">Choose your objective</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" fill="solid" size="large">Create</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </ion-grid>
+</ion-content>
+

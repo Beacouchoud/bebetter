@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditItemFormComponent } from 'src/app/components/edit-item-form/edit-item-form.component';
 import { NewItemFormComponent } from 'src/app/components/new-item-form/new-item-form.component';
 import { HomeComponent } from '../../components/home/home.component';
 
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: 'Home/NewItem',
     data: {title: 'New Item'},
     component: NewItemFormComponent
+  },
+  {
+    path: 'Home/EditItem/:id',
+    data: {title: 'Edit Item'},
+    component: EditItemFormComponent
   }
 
 
