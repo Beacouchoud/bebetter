@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, ActivationStart, NavigationEnd, Router, RoutesRecognized, UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-section',
@@ -7,15 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./section.page.scss'],
 })
 export class SectionPage implements OnInit {
-  public section: string;
-  title = "Home";
+  private title: String;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    console.log("loviuuuu");
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+    this.router.events.subscribe((data) => {
+      if (data instanceof ActivationStart || data instanceof  ActivationEnd) {
+        this.title = !!data.snapshot.data.title ? data.snapshot.data.title : this.title; ;
+        console.log(data.snapshot.data);
+      }
+    });
   }
 
-  ngOnInit() {
-    this.section = this.activatedRoute.snapshot.paramMap.get('id');
-  }
-
+  ngOnInit() {}
 }

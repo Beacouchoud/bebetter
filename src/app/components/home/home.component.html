@@ -1,23 +1,26 @@
-<ion-segment (ionChange)="false">
-  <ion-segment-button value="all">
+<ion-segment (ionChange)="(false)" value="all" slot="fixed">
+  <ion-segment-button value="all" class="button-all">
     <ion-label>All</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="public">
+  <ion-segment-button value="public" class="button-public">
     <ion-label>Public</ion-label>
   </ion-segment-button>
 </ion-segment>
 
-<div style="overflow: scroll;">
+<ion-row style="overflow: scroll">
+  <ion-col>
+    <div>
+      <app-items></app-items>
+      <app-items></app-items>
+      <app-items></app-items>
+      <app-items></app-items>
+      <app-items></app-items>
+    </div>
+  </ion-col>
+</ion-row>
 
-  <app-items></app-items>
-  <app-items></app-items>
-  <app-items></app-items>
-  <app-items></app-items>
-  <app-items></app-items>
-</div>
-
-<ion-fab vertical="bottom" horizontal="end" slot="fixed" edge class="">
-  <ion-fab-button >
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" edge >
+  <ion-fab-button [routerLink]="'/section/Home/NewItem'">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

@@ -42,4 +42,12 @@ ion-title {
 ion-fab {
   margin-bottom: var(--ion-margin, 24px);
   padding-bottom: var(--ion-padding, 16px);
+  margin-right: var(--ion-margin, 6px);
+}
+
+.button-all {
+  --color-checked: var(--color-pink);
+}
+.button-public {
+  --color-checked: var(--color-orange);
 }
