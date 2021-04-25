@@ -1,0 +1,142 @@
+<ion-grid style="overflow: scroll">
+  <ion-row>
+    <ion-col>
+      <ion-img src="/assets/icon.png"></ion-img>
+      <h1>Bebetter</h1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="signin-title ion-padding-start">
+      <ion-title class="ion-no-padding">Title</ion-title>
+      <p>Subtitle</p>
+      <p class="description">Description</p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-fab-button class="add-button">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-list>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item-sliding class="ion-padding-horizontal">
+              <ion-item class="item">
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <p class="info">0 Units</p>
+              </ion-item>
+              <ion-item-options side="end" class="">
+                <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-padding-vertical ion-margin-vertical">
+
+  </ion-row>
+  <ion-row class="bottom">
+    <ion-col size="6">
+      <ion-button class="ion-float-start ion-padding delete-button">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" class="ion-padding-end">
+      <!-- <ion-fab vertical="center" horizontal="end" slot="fixed"> -->
+      <ion-fab-button (click)="goToEdit()" class="edit-button ion-float-end ion-margin-end">
+        <ion-icon name="pencil"></ion-icon>
+      </ion-fab-button>
+      <!-- </ion-fab> -->
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,58 @@
+
+ion-img {
+  width: 25%;
+  margin: auto;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ion-color-step-650);
+  font-size: large;
+}
+
+.signin-title {
+  color: var(--color-pink);
+
+  & p {
+    margin-block-start: 0.2em;
+  }
+  & ion-title {
+    font-size: x-large;
+    font-weight: bold;
+  }
+}
+
+
+
+
+ion-item.color-input {
+  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --highlight-height: 3px;
+}
+
+ion-text{
+  color: var(--color-orange);
+  font-weight: bold;
+}
+
+ion-button {
+  --background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --color: #FFF;
+
+  &.google {
+    --color: var(--color-pink);
+    --background: #FFF;
+  }
+}
+
+p:not(.signin-title > *) {
+  color: gray;
+  text-align: center;
+  font-weight: bold;
+}
+
+.footer-md::before {
+  height: 0px;
+  top: 0;
+}
