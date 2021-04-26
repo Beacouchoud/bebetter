@@ -27,7 +27,7 @@ exports.deleteFriend = async(req, res) => {
 //enviar solicitud de amistad
 exports.sendFriendshipRequest = async(req, res) => {
     try {
-        await friends.updateOne({ "$addToSet": { "friendshipRequest":  req.params.username} });
+        await friends.updateOne({ "$addToSet": { "friendshipRequests":  req.params.username} });
         res.json({msg: 'Solicitud enviada'});
     } catch(error) {
         console.log(error);
@@ -39,7 +39,7 @@ exports.sendFriendshipRequest = async(req, res) => {
 //rechazar solicitud amistad
 exports.discardFriendshipRequest = async(req, res) => {
     try {
-        await friends.updateOne({ "$pull": { "friendshipRequest":  req.params.username} });
+        await friends.updateOne({ "$pull": { "friendshipRequests":  req.params.username} });
         res.json({msg: 'Amigo eliminado'});
     } catch(error) {
         console.log(error);
@@ -63,7 +63,7 @@ exports.listFriends = async(req, res) => {
 //devuelve todas las solicitudes de amistad
 exports.listFriendshipRequest = async(req, res) => {
     try {
-        const allFriendshipRequest = await friends.find({"owner": req.params.owner}, {"friendshipRequest": 1});
+        const allFriendshipRequest = await friends.find({"owner": req.params.owner}, {"friendshipRequests": 1});
         res.json(allFriendshipRequest);
     } catch (error) {
         console.log(error);

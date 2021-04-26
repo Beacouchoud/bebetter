@@ -9,7 +9,7 @@ const friendSchema = new Schema({
     friends: {
         type: Array
     },
-    friendshipRequest: {
+    friendshipRequests: {
         type: Array
     }
 });
