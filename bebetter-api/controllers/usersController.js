@@ -65,6 +65,8 @@ exports.updateUser = async(req, res, next) => {
     }
 }
 
+
+//elimina un usuario
 exports.deleteUser = async(req, res, next) => {
     try {
         let deletedUser = await users.findOneAndDelete({"username": req.params.id});
