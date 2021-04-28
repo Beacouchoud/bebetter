@@ -4,7 +4,7 @@ const usersController = require('../controllers/usersController');
 const itemsController = require('../controllers/itemsController');
 const friendsController = require('../controllers/friendsController');
 
-
+//return router
 module.exports = function() {
     //devuelve todos los usuarios
     router.get('/users', usersController.listUsers);

@@ -5,7 +5,7 @@ exports.addItem = async(req, res) => {
     const item = new items(req.body);
     try {
         await item.save();
-        res.json({msg: 'Nuevo usuario creado'});
+        res.json({msg: 'Nuevo item creado'});
     } catch(error) {
         console.log(error);
         res.send(error);

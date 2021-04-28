@@ -24,12 +24,17 @@ h1 {
 }
 
 
-
-
 ion-item.color-input {
   --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
   --highlight-height: 3px;
 }
+
+.border-danger{
+  --highlight-color-focused: red;
+  --highlight-height: 3px;
+}
+
+
 
 ion-text{
   color: var(--color-orange);

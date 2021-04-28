@@ -15,12 +15,17 @@
         <p>Dare to be better</p>
       </ion-col>
     </ion-row>
-    <form>
+    <form *ngIf="user == null" [formGroup]="form">
+      <div *ngIf=" error == true ">
+        <div class="alert alert-danger mb-4 animate__animated animate__shakeX" role="alert">
+          {{ msg }}
+        </div>
+      </div>
       <ion-row>
         <ion-col>
           <ion-item class="color-input" >
             <ion-label position="floating">Username</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [formControlName]="'username'" id="username"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -28,7 +33,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Name</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text"  [formControlName]="'name'" id="name" ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -36,7 +41,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="email" [formControlName]="'email'" id="email"  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -44,7 +49,10 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-input type="password" [formControlName]="'password'" id="registroPassword" aria-describedby="registroPasswordHelpBlock"></ion-input>
+            <small id="registroPasswordHelpBlock" class="form-text text-muted mb-4">
+              La contraseña debe tener al menos 8 caracteres
+            </small>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -58,7 +66,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="block" fill="solid" size="large" strong>Sign Up</ion-button>
+          <ion-button expand="block" fill="solid" size="large" strong [disabled]="form.invalid" type="submit">Sign Up</ion-button>
         </ion-col>
       </ion-row>
 
