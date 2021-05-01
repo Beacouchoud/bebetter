@@ -20,26 +20,33 @@ export class UserService {
     return this.loggedUser;
   }
 
-  createUsuario(usuario: IUser): Observable<any> {
-    return this.http.post(environment.URL_API + '/register', usuario);
-  }
-
-  updateUsuario(id: string, usuario: IUser): Observable<any> {
-    return this.http.post(environment.URL_API + '/updateUser', {id, usuario});
-  }
-
-  updatePwd(id: string, data: any): Observable<any> {
-    return this.http.post(environment.URL_API + '/updatePwd', {id, newPassword: data.newPassword1, oldPassword: data.password});
+  createUser(user: IUser): Observable<any> {
+    return this.http.post(environment.URL_API + '/users', user);
   }
 
   login(user: any): Observable<any> {
-    // return this.http.post(environment.URL_API + '/login', user).pipe(
-    //   map((loggedUser: IUsuario) => {
-    //     sessionStorage.setItem('token', loggedUser.sessionId);
-    //     return this.loggedUser = loggedUser;
-    //   })
-    // );
-    return of(true);
+    return this.http.post(environment.URL_API + '/login', user).pipe(
+      map((loggedUser: IUser) => {
+        sessionStorage.setItem('token', loggedUser.sessionId);
+        return this.loggedUser = loggedUser;
+      })
+    );
+  }
+
+  getUser(id: string): Observable<any> {
+    return this.http.get(environment.URL_API + '/users/'+id);
+  }
+
+  updateUser(id: string, user: IUser): Observable<any> {
+    return this.http.put(environment.URL_API + '/updateUser', {id, user});
+  }
+
+  updateUserPwd(id: string, data: any): Observable<any> {
+    return this.http.post(environment.URL_API + '/updatePwd', {id, newPassword: data.newPassword1, oldPassword: data.password});
+  }
+
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(environment.URL_API + '/deleteUser/'+id);
   }
 
   logout(): Observable<any> {

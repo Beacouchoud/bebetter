@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IRecord } from '../models/record.model';
 
@@ -16,7 +17,7 @@ export class RecordService {
     return this.http.post(environment.URL_API + '/createRecord', record);
   }
 
-  listRecords(): Observable<Array<IRecord> {
+  listRecords(): Observable<Array<IRecord>> {
     return this.http.get(environment.URL_API + '/listRecords').pipe(
       map(records => records as Array<IRecord>)
     );
@@ -31,3 +32,4 @@ export class RecordService {
   }
 }
 
+//borrar?? accedoa a record desde cada item, servicio innecesario
