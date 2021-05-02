@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,9 @@ export class SignupPage implements OnInit {
   public errorCode: string;
   public msg: string;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) { 
+    utils.enableMenu = true;
+  }
 
   ngOnInit() {
     this.initForm();
@@ -35,7 +38,7 @@ export class SignupPage implements OnInit {
 
   public registrarse(): void {
     if (this.form.valid) {
-      this.userService.createUsuario(this.form.getRawValue())
+      this.userService.createUser(this.form.getRawValue())
       .subscribe((usu: IUser) => {
                                   this.user = usu;
                                   this.router.navigate(['/singin']);},

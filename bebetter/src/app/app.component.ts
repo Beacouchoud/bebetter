@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtilsService } from './services/utils.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,8 +15,15 @@ export class AppComponent {
   ];
   // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor() {}
+  private menu: boolean;
 
+  constructor(private utils: UtilsService) {
+    this.menu = utils.enableMenu;
+  }
+
+  public get showMenu () {
+    return this.menu;
+  }
 
 
 }

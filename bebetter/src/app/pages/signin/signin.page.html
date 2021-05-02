@@ -10,9 +10,13 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="signin-title ion-padding-start">
-        <ion-title class="ion-no-padding">Sign In</ion-title>
-        <p>Hi there! Nice to see you again.</p>
+      <ion-col class="signin-title ion-padding-start ion-margin-vertical">
+        <ion-title class="ion-no-padding">Sign In</ion-title>     
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="signin-slogan">Hi there! Nice to see you again.</p>
       </ion-col>
     </ion-row>
     <form [formGroup]="form" *ngIf="form" (ngSubmit)="login()">

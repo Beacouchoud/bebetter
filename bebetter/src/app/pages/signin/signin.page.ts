@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from 'src/app/models/user.model';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-signin',
@@ -19,7 +20,9 @@ export class SigninPage implements OnInit {
   public msg: string;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) { 
+    utils.enableMenu = true;
+  }
 
   ngOnInit() {
     this.initForm();

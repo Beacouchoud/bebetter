@@ -13,14 +13,16 @@ h1 {
 
 .signin-title {
   color: var(--color-pink);
-
-  & p {
-    margin-block-start: 0.2em;
-  }
+  margin-top: 32px;
   & ion-title {
     font-size: x-large;
     font-weight: bold;
   }
+}
+
+.signin-slogan {
+  margin-block-start: 0.2em;
+  color: var(--color-pink) !important;
 }
 
 
@@ -29,8 +31,13 @@ ion-item.color-input {
   --highlight-height: 3px;
 }
 
-.border-danger{
-  --highlight-color-focused: red;
+.ng-invalid.ng-touched,.ion-invalid.ion-touched, .is-invalid{
+  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
+  --highlight-height: 3px;
+}
+
+.ng-valid.ng-touched,.ion-valid.ion-touched, .is-valid{
+  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
   --highlight-height: 3px;
 }
 
