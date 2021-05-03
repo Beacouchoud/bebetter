@@ -13,7 +13,7 @@ h1 {
 
 .signin-title {
   color: var(--color-pink);
-  margin-top: 32px;
+  margin-top: 24px;
   & ion-title {
     font-size: x-large;
     font-weight: bold;
@@ -21,8 +21,8 @@ h1 {
 }
 
 .signin-slogan {
-  margin-block-start: 0.2em;
   color: var(--color-pink) !important;
+
 }
 
 
@@ -31,17 +31,19 @@ ion-item.color-input {
   --highlight-height: 3px;
 }
 
-.ng-invalid.ng-touched,.ion-invalid.ion-touched, .is-invalid{
-  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
-  --highlight-height: 3px;
+ion-item.ion-invalid, ion-item.ion-touched, ion-item.ion-untouched {
+  .item-highlight  {
+    background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
 }
 
-.ng-valid.ng-touched,.ion-valid.ion-touched, .is-valid{
-  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
-  --highlight-height: 3px;
+.item-interactive.ion-invalid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
 }
 
-
+.item-interactive.ion-valid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+}
 
 ion-text{
   color: var(--color-orange);

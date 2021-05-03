@@ -18,12 +18,10 @@ export class AppComponent {
   private menu: boolean;
 
   constructor(private utils: UtilsService) {
-    this.menu = utils.enableMenu;
   }
 
   public get showMenu () {
-    return this.menu;
+    return this.utils.enableMenu;
   }
-
 
 }

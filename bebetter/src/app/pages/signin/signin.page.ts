@@ -20,8 +20,8 @@ export class SigninPage implements OnInit {
   public msg: string;
 
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) { 
-    utils.enableMenu = true;
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) {
+    utils.enableMenu = false;
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class SigninPage implements OnInit {
   }
 
   private initForm(): void {
-    this.form = this.formBuilder.group({
+    this.form = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.minLength(8), Validators.required]]
     });
@@ -37,6 +37,7 @@ export class SigninPage implements OnInit {
 
   public login(): void {
     if (this.form.valid) {
+      this.router.navigate(['/section/Home']);
       this.userService.login(this.form.getRawValue())
       .subscribe(
         (usu: any) => {
@@ -62,5 +63,7 @@ export class SigninPage implements OnInit {
     this.msg = error.error.message;
     this.error = true;
   }
+
+
 
 }

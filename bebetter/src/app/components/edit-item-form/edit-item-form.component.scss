@@ -1,4 +1,11 @@
+
+ion-img {
+  width: 25%;
+  margin: auto;
+}
+
 h1 {
+  margin-top: 0;
   text-transform: uppercase;
   text-align: center;
   color: var(--ion-color-step-650);
@@ -61,4 +68,19 @@ ion-radio {
 ion-toggle {
   --background-checked: #e08918;
   --handle-background-checked: var(--color-orange);
+}
+
+
+ion-item.ion-invalid, ion-item.ion-touched, ion-item.ion-untouched {
+  .item-highlight  {
+    background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+}
+
+.item-interactive.ion-invalid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+}
+
+.item-interactive.ion-valid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
 }

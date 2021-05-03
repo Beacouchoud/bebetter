@@ -13,12 +13,17 @@ export class SectionPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private utils: UtilsService) {
     this.router.events.subscribe((data) => {
       if (data instanceof ActivationStart || data instanceof  ActivationEnd) {
-        this.title = !!data.snapshot.data.title ? data.snapshot.data.title : this.title; ;
+        this.title = !!data.snapshot.data.title ? data.snapshot.data.title : this.title;
         console.log(data.snapshot.data);
       }
     });
     utils.enableMenu = true;
+    utils.enableTitle = true;
   }
 
   ngOnInit() {}
+
+  public get showTitle () {
+    return this.utils.enableTitle;
+  }
 }

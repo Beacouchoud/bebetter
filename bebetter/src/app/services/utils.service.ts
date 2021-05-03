@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class UtilsService {
 
   public enableMenu: boolean;
+  public enableTitle: boolean;
 
   constructor(protected http: HttpClient) { }
 
