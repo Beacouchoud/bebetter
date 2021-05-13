@@ -19,7 +19,7 @@ export class SignupPage implements OnInit {
   public errorCode: string;
   public msg: string;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) { 
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) {
     utils.enableMenu = true;
   }
 
@@ -29,20 +29,20 @@ export class SignupPage implements OnInit {
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      apellido: [!this.user ? null : this.user.username , [Validators.pattern('[a-zA-ZÑñ ]*'), Validators.required]],
-      nombre: [!this.user ? null : this.user.name , [Validators.pattern('[a-zA-ZÑñ ]*'), Validators.required]],
+      username: [!this.user ? null : this.user.username , [Validators.pattern('[a-zA-ZÑñ ]*'), Validators.required]],
+      name: [!this.user ? null : this.user.name , [Validators.pattern('[a-zA-ZÑñ ]*'), Validators.required]],
       email: [!this.user ? null : this.user.email , [Validators.email, Validators.required]],
       password: [!this.user ? null : this.user.password, [Validators.minLength(8), Validators.required]]
     });
   }
 
-  public registrarse(): void {
+  public signup(): void {
     if (this.form.valid) {
       this.userService.createUser(this.form.getRawValue())
       .subscribe((usu: IUser) => {
                                   this.user = usu;
-                                  this.router.navigate(['/singin']);},
-                (error) => this.handleError(error));
+                                  this.router.navigate(['/signin']);},
+                                  (error) => this.handleError(error));
     }
   }
 
