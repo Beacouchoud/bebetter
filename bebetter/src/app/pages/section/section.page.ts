@@ -8,7 +8,7 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./section.page.scss'],
 })
 export class SectionPage implements OnInit {
-  private title: String;
+  public title: String;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private utils: UtilsService) {
     this.router.events.subscribe((data) => {

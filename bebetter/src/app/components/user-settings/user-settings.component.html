@@ -1,0 +1,88 @@
+
+<ion-row>
+  <ion-col>
+    <ion-title class="ion-margin-top title1">Change Data</ion-title>
+  </ion-col>
+  <ion-col size="12">
+    <ion-avatar>
+      <img class="ion-padding-vertical" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      <ion-button class="edit-button">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+    </ion-avatar>
+  </ion-col>
+  <ion-col>
+<form [formGroup]="formUserData" *ngIf="formUserData" class="formUserData" (ngSubmit)="confirmChanges()">
+  <ion-row>
+    <ion-col>
+      <div *ngIf="error">
+        <div class="animate__animated animate__shakeX ion-text-center">
+          {{ msg }}
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="color-input">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [formControlName]="'name'" id="inputName" type="name"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="color-input">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [formControlName]="'email'" type="email" id="inputEmail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button class="ion-margin-bottom" expand="block" fill="solid" size="large" type="submit">Confirm</ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+</ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+    <ion-title class="title2">Change Password</ion-title>
+  </ion-col>
+<ion-col>
+<form [formGroup]="formPassword" *ngIf="formPassword" class="formPassword" (ngSubmit)="confirmNewPassword()">
+  <ion-row>
+    <ion-col>
+      <div *ngIf="error2">
+        <div class="animate__animated animate__shakeX ion-text-center">
+          {{ msg2 }}
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="color-input">
+        <ion-label position="floating">Current Password</ion-label>
+        <ion-input [formControlName]="'oldPassword'" type="password" id="inputOldPwd"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item class="color-input">
+        <ion-label position="floating">New Password</ion-label>
+        <ion-input [formControlName]="'newPassword'" type="password" id="inputNewPwd"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button class="ion-margin-bottom" expand="block" fill="solid" size="large" type="submit">Change Password</ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+</ion-col>
+</ion-row>

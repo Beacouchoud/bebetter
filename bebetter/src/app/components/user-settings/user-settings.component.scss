@@ -1,0 +1,197 @@
+
+ion-avatar {
+  width: 30%;
+  height: auto;
+  margin: auto;
+  position: relative;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--ion-color-step-650);
+  font-size: large;
+}
+
+ion-title {
+text-align: center;
+max-height: 20px;
+}
+
+.formUserData{
+  ion-item.color-input {
+    --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+    --highlight-height: 3px;
+  }
+
+  ion-item.ion-invalid, ion-item.ion-touched, ion-item.ion-untouched {
+    .item-highlight  {
+      background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+    }
+  }
+
+  .item-interactive.ion-invalid {
+    --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+
+  .item-interactive.ion-valid {
+    --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+
+
+ion-button {
+  --background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --color: #FFF;
+
+  &.edit-button {
+    --background: transparent !important;
+    --box-shadow: none;
+    --background-activated: transparent;
+    --background-hover: transparent;
+    --background-focused: transparent;
+    --background-activated-opacity: 0;
+    --background-focused-opacity: 0;
+    --background-hover-opacity: 0;
+    --color-focused: transparent;
+    --color-hover: transparent;
+    position:absolute;
+    bottom: 0;
+    right: -10%;
+    border-radius: 25%;
+
+    &.ion-activated{
+      --background: transparent !important;
+      --box-shadow: none;
+      --background-activated: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated-opacity: 1;
+      --background-focused-opacity: 1;
+      --background-hover-opacity: 1;
+      --color-focused: transparent;
+      --color-hover: transparent;
+    }
+  }
+}
+}
+
+.formPassword{
+  ion-item.color-input {
+    --highlight-color-focused:  linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+    --highlight-height: 3px;
+  }
+
+  ion-item.ion-invalid, ion-item.ion-touched, ion-item.ion-untouched {
+    .item-highlight  {
+      background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+    }
+  }
+
+  .item-interactive.ion-invalid {
+    --highlight-background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+
+  .item-interactive.ion-valid {
+    --highlight-background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+
+
+ion-button {
+  --background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --color: #FFF;
+
+  &.edit-button {
+    --background: transparent !important;
+    --box-shadow: none;
+    --background-activated: transparent;
+    --background-hover: transparent;
+    --background-focused: transparent;
+    --background-activated-opacity: 0;
+    --background-focused-opacity: 0;
+    --background-hover-opacity: 0;
+    --color-focused: transparent;
+    --color-hover: transparent;
+    position:absolute;
+    bottom: 0;
+    right: -10%;
+
+    &.ion-activated{
+      --background: transparent !important;
+      --box-shadow: none;
+      --background-activated: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated-opacity: 1;
+      --background-focused-opacity: 1;
+      --background-hover-opacity: 1;
+      --color-focused: transparent;
+      --color-hover: transparent;
+    }
+  }
+}
+}
+
+
+ion-button {
+  --background: linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --color: #FFF;
+
+  &.edit-button {
+    --background: transparent !important;
+    --box-shadow: none;
+    --background-activated: transparent;
+    --background-hover: transparent;
+    --background-focused: transparent;
+    --background-activated-opacity: 0;
+    --background-focused-opacity: 0;
+    --background-hover-opacity: 0;
+    --color-focused: transparent;
+    --color-hover: transparent;
+    position:absolute;
+    bottom: 0;
+    right: -10%;
+
+    &.ion-activated{
+      --background: transparent !important;
+      --box-shadow: none;
+      --background-activated: transparent;
+      --background-hover: transparent;
+      --background-focused: transparent;
+      --background-activated-opacity: 1;
+      --background-focused-opacity: 1;
+      --background-hover-opacity: 1;
+      --color-focused: transparent;
+      --color-hover: transparent;
+    }
+  }
+}
+
+
+ion-text{
+  color: var(--color-orange);
+  font-weight: bold;
+}
+
+
+
+p:not(.signin-title > *) {
+  color: gray;
+  text-align: center;
+  font-weight: bold;
+}
+
+.footer-md::before {
+  height: 0px;
+  top: 0;
+}
+
+.title1 {
+  color: var(--color-pink);
+  text-align: left;
+  font-weight: bold;
+}
+.title2 {
+  color: var(--color-orange);
+  text-align: right;
+  font-weight: bold;
+}

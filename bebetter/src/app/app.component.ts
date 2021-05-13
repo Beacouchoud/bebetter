@@ -13,7 +13,6 @@ export class AppComponent {
     { title: 'My Profile', url: '/section/Profile', icon: 'archive' },
     { title: 'Settings', url: '/section/Settings', icon: 'warning' },
   ];
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   private menu: boolean;
 
