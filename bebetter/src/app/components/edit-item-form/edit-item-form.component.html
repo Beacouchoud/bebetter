@@ -9,7 +9,7 @@
     </ion-row>
     <ion-row  class="ion-padding">
       <ion-col class="signin-title ion-padding-start ion-text-left">
-        <ion-title class="ion-no-padding">New Item</ion-title>
+        <ion-title class="ion-no-padding">Edit Item</ion-title>
         <p>Dare to be better</p>
       </ion-col>
     </ion-row>
@@ -27,7 +27,7 @@
         <ion-col>
           <ion-item class="color-input" >
             <ion-label position="floating">Title</ion-label>
-            <ion-input [formControlName]="'title'" id="inputTitle" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'title'" id="inputTitle" type="text" ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -35,7 +35,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Subtitle</ion-label>
-            <ion-input [formControlName]="'subtitle'" id="inputSubitle" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'subtitle'" id="inputSubitle" type="text" ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -43,7 +43,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Description</ion-label>
-            <ion-input [formControlName]="'description'" id="inputDescription" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'description'" id="inputDescription" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -51,7 +51,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Units of Measurement</ion-label>
-            <ion-input [formControlName]="'um'" id="inputUm" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'um'" id="inputUm" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -59,13 +59,21 @@
         <ion-col>
           <ion-item class="color-input item-has-placeholder">
             <ion-label position="floating">Choose your objective</ion-label>
-            <ion-input [formControlName]="'objective'" id="inputObjective" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'objective'" id="inputObjective" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button class="ion-padding-horizontal" expand="block" fill="solid" size="large">Edit</ion-button>
+          <ion-item>
+            <ion-label>Private</ion-label>
+            <ion-toggle  [formControlName]="'private'" id="inputPublic" (ionChange)="changePrivacity()"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button class="ion-padding-horizontal" expand="block" fill="solid" size="large" type="submit">Edit</ion-button>
         </ion-col>
       </ion-row>
 

@@ -3,14 +3,15 @@ const router = express.Router();
 const usersController = require('../controllers/usersController');
 const itemsController = require('../controllers/itemsController');
 const friendsController = require('../controllers/friendsController');
+const verifySignUp  = require("../middlewares/verifySignUp");
 
 //return router
 module.exports = function() {
     //crea un nuevo usuario
-    router.post('/users', usersController.addUser);
+    router.post('/signup', verifySignUp.checkDuplicateUsernameOrEmail, usersController.signup);
 
     //inicia sesión
-    router.get('/login', usersController.login);
+    router.post('/login', usersController.signin);
 
     //devuelve todos los usuarios
     router.get('/users', usersController.listUsers);
@@ -18,8 +19,8 @@ module.exports = function() {
     //devuelve un usuario
     router.get('/users/:id', usersController.getUser);
 
-    //devuelve el usuario que tiene la sesión iniciada
-    router.post('/user', usersController.getActiveUser);
+    //devuelve el usuario que tiene la sesión iniciada,
+    //router.post('/user', usersController.activeUser);
 
     //actualiza datos de un usuario
     router.put('/users/:id', usersController.updateUser);
@@ -31,24 +32,22 @@ module.exports = function() {
     router.delete('/users/:id', usersController.deleteUser);
 
     //cierra la sesión de un usuario
-    router.get('/logout', usersController.logout);    
-
-
+    /* router.get('/logout', usersController.logout);   */ 
 
     //crear nuevo item
     router.post('/item', itemsController.addItem);
 
-    //devuelve todos los items privados de un usuario
-    router.get('/PrivateItems/:owner', itemsController.listPrivateItems);
+    //devuelve todos los items de un usuario
+    router.get('/getFullItem/:owner', itemsController.getFullItem);
 
     //devuelve todos los items publicos de un usuario
-    router.get('/PublicItems/:owner', itemsController.listPublicItems);
+    // router.get('/publicItems/:owner', itemsController.listPublicItems);
 
     //obtener un item
-    router.get('/item/:id', itemsController.getItem);
+    // router.get('/item/:id', itemsController.getItem);
 
     //actualizar datos de un item
-    router.put('/item/:id', itemsController.updateItem);
+    router.put('/item', itemsController.updateItem);
 
     //elimina un item
     router.delete('/item/:id', itemsController.deleteItem);

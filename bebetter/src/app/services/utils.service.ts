@@ -6,9 +6,25 @@ import { Injectable } from '@angular/core';
 })
 export class UtilsService {
 
-  public enableMenu: boolean;
-  public enableTitle: boolean;
+  private enableMenu: boolean;
+  private enableTitle: boolean;
 
   constructor(protected http: HttpClient) { }
+
+  public setEnableTitle(b: boolean) {
+    this.enableTitle = b;
+  }
+
+  public getEnableTitle() {
+    return this.enableTitle;
+  }
+
+  public setEnableMenu(b: boolean) {
+    this.enableMenu = b;
+  }
+
+  public getEnableMenu() {
+    return this.enableMenu;
+  }
 
 }

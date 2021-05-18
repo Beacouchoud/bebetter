@@ -19,6 +19,7 @@ import { ProfileComponent } from 'src/app/components/profile/profile.component';
 import { UserSettingsComponent } from 'src/app/components/user-settings/user-settings.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ViewItemComponent } from 'src/app/components/view-item/view-item.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ItemsReportsComponent,
     FriendsComponent,
     ProfileComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    ViewItemComponent
   ]
 })
 export class SectionPageModule {}

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-new-record',
@@ -8,19 +8,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class NewRecordComponent implements OnInit {
 
-  @Input() firstName: string;
-  @Input() lastName: string;
-  @Input() middleInitial: string;
-
-  constructor(public modalController: ModalController) { }
+  constructor(private utils: UtilsService) {
+    utils.setEnableTitle(false);
+  }
 
   ngOnInit() {}
 
-  dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-  }
 }

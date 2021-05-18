@@ -1,24 +1,20 @@
-<ion-segment (ionChange)="(false)" value="all" slot="fixed">
-  <ion-segment-button value="all" class="button-all">
-    <ion-label>All</ion-label>
+<ion-segment (ionChange)="changeList()" value="private" slot="fixed">
+  <ion-segment-button value="private" class="button-all" >
+    <ion-label>Private</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="public" class="button-public">
+  <ion-segment-button value="public" class="button-public" >
     <ion-label>Public</ion-label>
   </ion-segment-button>
 </ion-segment>
-
-<ion-row style="overflow: scroll">
-  <ion-col>
-    <div>
-      <app-items></app-items>
-      <app-items></app-items>
-      <app-items></app-items>
-      <app-items></app-items>
-      <app-items></app-items>
-    </div>
-  </ion-col>
-</ion-row>
-
+<ion-grid>
+  <ion-row style="overflow: scroll">
+    <ion-col *ngFor="let itemDetail of itemsFiltered">
+      <div>
+        <app-items [itemDetail]="itemDetail" ></app-items>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" edge >
   <ion-fab-button [routerLink]="'/section/Home/NewItem'">
     <ion-icon name="add"></ion-icon>

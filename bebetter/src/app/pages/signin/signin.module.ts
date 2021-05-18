@@ -21,6 +21,6 @@ import { UtilsService } from 'src/app/services/utils.service';
     SigninPageRoutingModule
   ],
   declarations: [SigninPage],
-  providers: [UserService, ItemService, FriendService, UtilsService]
+  providers: [ ItemService, FriendService]
 })
 export class SigninPageModule {}

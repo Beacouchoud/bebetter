@@ -1,49 +1,67 @@
 const users = require('../models/users');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const expressSanitizer = require('express-sanitizer');
+var sess;
+var jwt = require("jsonwebtoken");
+var secret = 'Shh, its a secret!';
 
-//crear nuevo usuario
-exports.addUser = async(req, res) => {
-    const user = new users(req.body);
+
+
+exports.signup = async(req, res) => {
+    const user = new users({
+      name: req.body.name,
+      username: req.body.username,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8)
+    }); 
     try {
-        await user.save();
-        res.json({msg: 'Nuevo usuario creado'});
+    await user.save();
+    res.json({msg: 'Nuevo usuario creado'}); 
     } catch(error) {
         console.log(error);
         res.send(error);
         next();
     }
-}
+};
 
 //inicia sesion
-exports.login = (req, res, next) => {
-    // db.query(
-    //   "SELECT * FROM usuario WHERE email = ?",
-    //   [req.body.email],
-    //   (error, result) => {
-    //     if (error) {
-    //       req.session.authenticated = false;
-    //       res.status(500).json({ code: error.code, message: error.sqlMessage });
-    //     } else if (result.length === 0) {
-    //       res.status(404).json({ message: "Usuario no encontrado" });
-    //     } else {
-    //       let data = JSON.parse(JSON.stringify(result));
+exports.signin = (req, res) => {
+    users.findOne({
+      email: req.body.email
+    })
+      .exec((err, user) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
   
-    //       if (bcrypt.compareSync(req.body.password, data[0].password.toString())) {
-    //         sess = req.session;
-    //         sess.email = data[0].email;
-    //         sess.userId = data[0].id_usuario;
-    //         sess.nivel = data[0].nivel;
-    //         sess.authenticated = true;
-    //         sess.id = req.sessionID;
-    //         delete data[0].password;
-    //         data[0].sessionId = req.sessionID;
-    //         res.status(200).json(data[0]);
-    //       } else {
-    //         res.status(404).json({ message: "Contraseña incorrecta" });
-    //       }
-    //     }
-    //   }
-    // );
-};
+        if (!user) {
+          return res.status(404).send({ message: "User Not found." });
+        }
+  
+        var passwordIsValid = bcrypt.compareSync(
+          req.body.password,
+          user.password
+        );
+  
+        if (!passwordIsValid) {
+          return res.status(401).send({
+            accessToken: null,
+            message: "Invalid Password!"
+          });
+        }
+  
+        var token = jwt.sign({ id: user._id }, secret, {
+          expiresIn: 86400 // 24 hours
+        });
+  
+        res.status(200).send({
+          user: user,
+          accessToken: token
+        });
+      });
+  };
 
 //devuelve todos los usuarios
 exports.listUsers = async(req, res) => {
@@ -136,40 +154,6 @@ exports.deleteUser = async(req, res, next) => {
         });
     }
 }
-
-
-
-exports.activeUser = (req, res, next) => {
-    // console.log("[Active User] token", req.body);
-    // console.log("[Active Session] ", sess);
-    // if (sess && sess.id == req.body.token) {
-    //   console.log(
-    //     "[Active User] user logged token y session:",
-    //     req.body.token,
-    //     sess.id
-    //   );
-    //   db.query(
-    //     "SELECT * FROM usuario WHERE id_usuario = ?",
-    //     [sess.userId],
-    //     (error, result) => {
-    //       console.log("ERROR: ", error, "RESULT: ", result);
-    //       if (error) {
-    //         console.error(error);
-    //         res.status(500).json({ code: error.code, message: error.sqlMessage });
-    //       } else {
-    //         let data = JSON.parse(JSON.stringify(result));
-    //         delete data[0].password;
-    //         res.status(200).json(data[0]);
-    //       }
-    //     }
-    //   );
-    // } else {
-    //   console.log("[Active User] user not logged");
-    //   res.status(200).json(null);
-    // }
-};
-
-
 
 exports. logout = (req, res, next) => {
     sess = undefined;

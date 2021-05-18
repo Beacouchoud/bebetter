@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-edit-record',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditRecordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private utils: UtilsService) {
+    utils.setEnableMenu(false);
+    utils.setEnableTitle(false)
+  }
 
   ngOnInit() {}
 

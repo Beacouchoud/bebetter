@@ -6,30 +6,38 @@ const itemSchema = new Schema({
         trim: true,
         unique: true
     },
-    title: {
-        type: String,
-        trim: true
-    },
-    subtitle: {
-        type: String,
-        trim: true
-    },
-    description: {
-        type: String,
-        trim: true
-    },
-    records: {
-        type: Array
-    },
-    private: {
-        type: Boolean
-    },
-    graph: {
-        type: Number
-    },
-    units: {
-        type: String
-    }
+    userItems: [{
+        title: {
+            type: String,
+            trim: true
+        },
+        subtitle: {
+            type: String,
+            trim: true
+        },
+        description: {
+            type: String,
+            trim: true
+        },
+        records: {
+            type: Array
+        },
+        private: {
+            type: Boolean
+        },
+        type: {
+            type: Number
+        },
+        um: {
+            type: String
+        },
+        date: {
+            type: String
+        },
+        objective: {
+            type: String
+        }
+    }]
 });
 
 module.exports = mongoose.model('items', itemSchema);

@@ -21,7 +21,7 @@ export class SigninPage implements OnInit {
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) {
-    utils.enableMenu = false;
+    utils.setEnableMenu(false);
   }
 
   ngOnInit() {
@@ -30,19 +30,17 @@ export class SigninPage implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      email: [null, [Validators.email, Validators.required]],
-      password: [null, [Validators.minLength(8), Validators.required]]
+      email: ['bcouchoud@gmail.com', [Validators.email, Validators.required]],
+      password: ['asdasd123', [Validators.minLength(8), Validators.required]]
     });
   }
 
   public login(): void {
     if (this.form.valid) {
-      this.router.navigate(['/section/Home']);
       this.userService.login(this.form.getRawValue())
       .subscribe(
-        (usu: any) => {
-          if (usu.habilitado === 1) {
-            this.user = usu;
+        (user: IUser) => {
+          if (user._id) {
             this.router.navigate(['/section/Home']);
           } else {
             this.msg = 'Email or password incorrect';

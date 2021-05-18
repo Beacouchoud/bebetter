@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { IDetailItem, IItem } from 'src/app/models/item.model';
+import { IUser } from 'src/app/models/user.model';
+import { ItemService } from 'src/app/services/item.service';
+import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { NewRecordComponent } from '../new-record/new-record.component';
 
 @Component({
@@ -10,28 +15,61 @@ import { NewRecordComponent } from '../new-record/new-record.component';
 })
 export class ViewItemComponent implements OnInit {
 
-  constructor(private router: Router, private activateRouter: ActivatedRoute, public modalController: ModalController) { }
 
-  ngOnInit() {}
+  private itemDetail: IDetailItem;
+  private item: IItem;
+  private user: IUser;
+  private owner: string;
 
-  public goToEdit(): void {
-    this.router.navigate(['../../EditItem/7'], {relativeTo: this.activateRouter});
+  constructor(
+    private router: Router,
+    private activateRouter: ActivatedRoute,
+    public modalController: ModalController,
+    private utils: UtilsService,
+    private itemService: ItemService,
+    private userService: UserService) {
+      utils.setEnableTitle(true);
+      this.user = userService.getLoggedUser();
+      this.owner = this.user.username;
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: NewRecordComponent,
-      cssClass: 'new-record'
-    });
-
-    this.handleModalDismiss(modal);
-    return await modal.present();
+  ngOnInit() {
+    this.getItem();
   }
 
-  private async handleModalDismiss(modal) {
-    const { data } = await modal.onWillDismiss();
-  console.log(data);
+  get itemDetails(){
+    return this.itemDetail;
   }
+
+  private getItem(): void {
+    this.activateRouter.paramMap.subscribe(paramsMap =>
+       this.itemService.getDetailItem(paramsMap.get('id'), this.owner)
+        .subscribe(itemDetail => this.itemDetail = itemDetail)
+       );
+  }
+
+  public navigateToEditItem(): void {
+    this.router.navigate(['../../EditItem/'+this.itemDetail._id], {relativeTo: this.activateRouter});
+  }
+
+  public deleteItemDetails(id: string) {}
+
+  public deleteRecord(id: string) {}
+
+  // async presentModal() {
+  //   const modal = await this.modalController.create({
+  //     component: NewRecordComponent,
+  //     cssClass: 'new-record'
+  //   });
+
+  //   this.handleModalDismiss(modal);
+  //   return await modal.present();
+  // }
+
+  // private async handleModalDismiss(modal) {
+  //   const { data } = await modal.onWillDismiss();
+  // console.log(data);
+  // }
 
 
 

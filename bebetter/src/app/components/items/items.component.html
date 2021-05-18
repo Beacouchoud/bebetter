@@ -6,21 +6,20 @@
 
       </ion-col>
       <ion-col size="10">
-        <ion-card-title>Card Title</ion-card-title>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+        <ion-card-title>{{itemDetail.title}}</ion-card-title>
+        <ion-card-subtitle>{{itemDetail.subtitle}}</ion-card-subtitle>
       </ion-col>
     </ion-row>
 
   </ion-card-header>
-
-  <ion-item class="item">
+  <ion-item class="item" >
     <ion-icon name="pin" slot="start"></ion-icon>
-    <p class="info">0 Units</p>
-    <ion-button fill="outline" slot="end" [routerLink]="'/section/Home/ViewItem/:1'">View</ion-button>
+    <!-- TODO asegurarse de que los records se guardan ordenados (mas nuevos al principio) -->
+    <p class="info">{{record.value}} {{itemDetail.um}}</p>
+    <ion-button fill="outline" slot="end" [routerLink]="'/section/Home/ViewItem/'+ itemDetail._id" (click)="setDetailItemId()">View</ion-button>
   </ion-item>
 
   <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile, and
-    climb a mountain or spend a week in the woods. Wash your spirit clean.
+    {{itemDetail.description}}
   </ion-card-content>
 </ion-card>

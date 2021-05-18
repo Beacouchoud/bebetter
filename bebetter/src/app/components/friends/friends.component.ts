@@ -9,7 +9,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class FriendsComponent implements OnInit {
 
   constructor(private utils: UtilsService) {
-    utils.enableTitle = true;
+    utils.setEnableTitle(true);
   }
 
   ngOnInit() {}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user.service';
 import { UtilsService } from './services/utils.service';
 @Component({
   selector: 'app-root',
@@ -16,11 +17,16 @@ export class AppComponent {
 
   private menu: boolean;
 
-  constructor(private utils: UtilsService) {
+  constructor(private utils: UtilsService, private userService: UserService) {
   }
 
   public get showMenu () {
-    return this.utils.enableMenu;
+    return this.utils.getEnableMenu();
+  }
+
+  public logout(): void {
+    this.userService.logout();
+    this.utils.setEnableMenu(false);
   }
 
 }

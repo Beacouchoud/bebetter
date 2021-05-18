@@ -14,7 +14,7 @@
         <p>Dare to be better</p>
       </ion-col>
     </ion-row>
-    <form *ngIf="user == null" [formGroup]="form">
+    <form  [formGroup]="form" (ngSubmit)="signup()">
       <div *ngIf=" error == true ">
         <div class="alert alert-danger mb-4 animate__animated animate__shakeX" role="alert">
           {{ msg }}
@@ -65,7 +65,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="block" fill="solid" size="large" strong [disabled]="form.invalid" type="submit">Sign Up</ion-button>
+          <ion-button expand="block" fill="solid" size="large" strong type="submit">Sign Up</ion-button>
         </ion-col>
       </ion-row>
 

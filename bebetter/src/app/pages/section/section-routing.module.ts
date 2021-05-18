@@ -59,15 +59,15 @@ const routes: Routes = [
     path: 'Settings',
     data: { title: 'Settings' },
     component: UserSettingsComponent,
-  },
-  {
-    path: 'Reports',
-    data: { title: 'Report' },
-    loadChildren: () =>
-      import('../../components/home/home.component').then(
-        (m) => m.HomeComponent
-      ),
-  },
+  }
+  // , {
+  //   path: 'Reports',
+  //   data: { title: 'Report' },
+  //   loadChildren: () =>
+  //     import('../../components/home/home.component').then(
+  //       (m) => m.HomeComponent
+  //     ),
+  // },
 ];
 
 @NgModule({

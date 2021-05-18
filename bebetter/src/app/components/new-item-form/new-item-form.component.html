@@ -27,7 +27,7 @@
         <ion-col>
           <ion-item class="color-input" >
             <ion-label position="floating">Title</ion-label>
-            <ion-input [formControlName]="'title'" id="inputTitle" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'title'" id="inputTitle" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -35,7 +35,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Subtitle</ion-label>
-            <ion-input [formControlName]="'subtitle'" id="inputSubitle" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'subtitle'" id="inputSubitle" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -43,7 +43,7 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Description</ion-label>
-            <ion-input [formControlName]="'description'" id="inputDescription" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'description'" id="inputDescription" type="text" ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -51,14 +51,14 @@
         <ion-col>
           <ion-item class="color-input">
             <ion-label position="floating">Units of Measurement</ion-label>
-            <ion-input [formControlName]="'um'" id="inputUm" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'um'" id="inputUm" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-no-padding">
           <ion-list lines="none" class="ion-no-padding">
-          <ion-radio-group value="goal" [formControlName]="'type'" id="inputType">
+          <ion-radio-group  [formControlName]="'type'" id="inputType">
             <ion-list-header>
               <ion-label class="color-label">Item Type</ion-label>
             </ion-list-header>
@@ -66,13 +66,13 @@
               <ion-col>
                 <ion-item>
                   <ion-label>Goal</ion-label>
-                  <ion-radio slot="start" value="goal"></ion-radio>
+                  <ion-radio slot="start" value="1"></ion-radio>
                 </ion-item>
               </ion-col>
               <ion-col>
                 <ion-item>
                   <ion-label>Follow-up</ion-label>
-                  <ion-radio slot="start" value="follow"></ion-radio>
+                  <ion-radio slot="start" value="2"></ion-radio>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -90,13 +90,13 @@
         <ion-col size="6">
           <ion-item class="color-input item-has-placeholder">
             <ion-label position="floating" style="font-size:14px;">Choose your objective</ion-label>
-            <ion-input [formControlName]="'objective'" id="inputObjective" type="text" pattern="[A-Za-z0-9Ññ._%+-]"></ion-input>
+            <ion-input [formControlName]="'objective'" id="inputObjective" type="text"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <ion-button expand="block" fill="solid" size="large">Create</ion-button>
+          <ion-button type="submit" expand="block" fill="solid" size="large">Create</ion-button>
         </ion-col>
       </ion-row>
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,9 @@ export class ProfileComponent implements OnInit {
   public errorCode2: string;
   public msg2: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private utils: UtilsService) {
+    utils.setEnableTitle(true);
+  }
 
   ngOnInit() {
     this.initFormUserData();

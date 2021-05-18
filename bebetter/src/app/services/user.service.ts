@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -12,8 +13,8 @@ export class UserService {
 
   private loggedUser: IUser;
 
-  constructor(protected http: HttpClient) {
-    // this.getActiveUser().subscribe((loggedUser: IUsuario) => this.loggedUser = loggedUser);
+  constructor(protected http: HttpClient, private router: Router) {
+    this.getActiveUser().subscribe((loggedUser: IUser) => this.loggedUser = loggedUser);
   }
 
   getLoggedUser(): IUser {
@@ -21,14 +22,20 @@ export class UserService {
   }
 
   createUser(user: IUser): Observable<any> {
-    return this.http.post(environment.URL_API + '/users', user);
+    return this.http.post(environment.URL_API + '/signup', user);
+  }
+
+  setLoggedUser(user: IUser): void {
+    this.loggedUser = user;
   }
 
   login(user: any): Observable<any> {
     return this.http.post(environment.URL_API + '/login', user).pipe(
-      map((loggedUser: IUser) => {
-        sessionStorage.setItem('token', loggedUser.sessionId);
-        return this.loggedUser = loggedUser;
+      map((loggedUser: any) => {
+        localStorage.setItem('token', loggedUser.accessToken);
+        localStorage.setItem('username', loggedUser.user.username);
+        this.setLoggedUser(loggedUser.user);
+        return loggedUser.user;
       })
     );
   }
@@ -49,20 +56,19 @@ export class UserService {
     return this.http.delete(environment.URL_API + '/deleteUser/'+id);
   }
 
-  logout(): Observable<any> {
-    return this.http.get(environment.URL_API + '/logout',{
-      withCredentials: true}).pipe(map(res => {
-        this.loggedUser = null;
-        sessionStorage.removeItem('token');
-        return res;
-      }));
+  logout(): void {
+    this.loggedUser = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigateByUrl('/signin');
   }
 
   getActiveUser(): Observable<any> {
-    if (sessionStorage.getItem('token')) {
-      return this.http.post(environment.URL_API + '/activeUser', {token: sessionStorage.getItem('token')});
+    if (localStorage.getItem('username')) {
+      return this.getUser(localStorage.getItem('username'));
     } else {
-      return this.logout();
+      this.logout();
+      return of();
     }
   }
 }

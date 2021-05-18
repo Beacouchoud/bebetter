@@ -20,7 +20,7 @@ export class SignupPage implements OnInit {
   public msg: string;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router, private utils: UtilsService) {
-    utils.enableMenu = true;
+    utils.setEnableMenu(true);
   }
 
   ngOnInit() {
