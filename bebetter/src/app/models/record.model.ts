@@ -1,5 +1,5 @@
 export interface IRecord {
   _id: string;
   date: Date;
-  value: string;
+  value: number;
 }

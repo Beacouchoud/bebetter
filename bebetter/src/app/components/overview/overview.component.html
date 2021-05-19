@@ -1,0 +1,56 @@
+<ion-grid>
+  <ion-row class="ion-margin-vertical">
+    <ion-col size=3></ion-col>
+    <ion-col size="6">
+      Days you have achieved your goal
+      <ion-item lines="none">
+        <ion-label class="ion-margin-start">{{daysGoalAchieved}} Days</ion-label>
+        <ion-icon class="success ion-no-margin " name="checkmark-circle" slot="start"></ion-icon>
+      </ion-item>
+    </ion-col>
+    <ion-col size=3></ion-col>
+  </ion-row>
+ <ion-row class="ion-margin-vertical">
+    <ion-col size="6">
+      <p>Lowest value registered</p>
+      <ion-item lines="none">
+        <ion-label class="ion-margin-start"><small>{{lowestRecord.date | date:'dd/MM/yyyy' }} <br> {{lowestRecord.value}} {{item.um}}</small></ion-label>
+        <ion-icon class="info ion-no-margin " name="information-circle" slot="start" ></ion-icon>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="6">
+      <p>Highest value registered</p>
+      <ion-item lines="none">
+        <ion-label class="ion-margin-start"><small>{{highestRecord.date | date:'dd/MM/yyyy' }} <br> {{highestRecord.value}} {{item.um}}</small></ion-label>
+        <ion-icon class="info ion-no-margin" name="information-circle" slot="start"></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-margin-vertical">
+    <ion-col size="12">
+      <p>Your progress today</p>
+      <ion-progress-bar value="0" [buffer]="objectiveProgressToday"></ion-progress-bar>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-margin-vertical">
+    <ion-col size="6">
+      <p>Last 7 days average</p>
+      <mat-progress-spinner
+      diameter="75"
+      [mode]="mode"
+      [value]="average7Days">
+      </mat-progress-spinner>
+      <p>{{ average7Days /100 * userItem.objective }} / {{ userItem.objective }}</p>
+    </ion-col>
+    <ion-col size="6">
+      <p>Last 30 days average</p>
+      <mat-progress-spinner
+      diameter="75"
+      [mode]="mode"
+      [value]="average30Days">
+      </mat-progress-spinner>
+      <p>{{ average7Days /100 * userItem.objective}} / {{ userItem.objective }}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>

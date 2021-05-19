@@ -1,0 +1,23 @@
+ion-progress-bar {
+  --buffer-background: var(--color-orange);
+}
+
+mat-progress-spinner {
+  margin: auto;
+  width: 50%;
+}
+
+
+ion-icon {
+  zoom: 150%;
+  &.success {
+    color: #50cc31d0;
+  }
+  &.info {
+    color: #279cb1;
+  }
+}
+
+ion-item{
+  box-shadow:  0px 3px 1px 4px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}

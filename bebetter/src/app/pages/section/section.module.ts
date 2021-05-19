@@ -20,6 +20,8 @@ import { UserSettingsComponent } from 'src/app/components/user-settings/user-set
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ViewItemComponent } from 'src/app/components/view-item/view-item.component';
+import { OverviewComponent } from 'src/app/components/overview/overview.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -28,7 +30,8 @@ import { ViewItemComponent } from 'src/app/components/view-item/view-item.compon
     ReactiveFormsModule,
     IonicModule,
     SectionPageRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     NewItemFormComponent,
@@ -42,7 +45,8 @@ import { ViewItemComponent } from 'src/app/components/view-item/view-item.compon
     FriendsComponent,
     ProfileComponent,
     UserSettingsComponent,
-    ViewItemComponent
+    ViewItemComponent,
+    OverviewComponent
   ]
 })
 export class SectionPageModule {}

@@ -19,3 +19,7 @@ mat-panel-title {
 mat-panel-description {
   font-size: medium;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #2A79FF!important;
+}

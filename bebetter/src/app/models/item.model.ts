@@ -3,7 +3,7 @@ import { IRecord } from "./record.model";
 export interface IItem {
   _id: string;
   owner: string;
-  userItems:Array<IDetailItem>
+  userItems:Array<IDetailItem>;
 }
 
 export interface IDetailItem {
@@ -16,5 +16,5 @@ export interface IDetailItem {
   graph: Number;
   um: string;
   date: string;
-  objective: string;
+  objective: number;
 }
