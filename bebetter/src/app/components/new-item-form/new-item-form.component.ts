@@ -58,7 +58,7 @@ export class NewItemFormComponent implements OnInit {
       .subscribe((item: IItem) => {
                                   this.item = item;
                                   console.log(item);
-                                  // this.router.navigate(['../viewItem/'+item._id]);
+                                  this.router.navigate(['../viewItem/'+item._id]);
                                 },
                                   (error) => this.handleError(error));
     } else {

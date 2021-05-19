@@ -42,6 +42,8 @@ export class ViewItemComponent implements OnInit {
   }
 
   private getItem(): void {
+    this.itemService.getActiveItem(this.user.username)
+    .subscribe(item => this.item = item);
     this.activateRouter.paramMap.subscribe(paramsMap =>
        this.itemService.getDetailItem(paramsMap.get('id'), this.owner)
         .subscribe(itemDetail => this.itemDetail = itemDetail)
@@ -52,7 +54,17 @@ export class ViewItemComponent implements OnInit {
     this.router.navigate(['../../EditItem/'+this.itemDetail._id], {relativeTo: this.activateRouter});
   }
 
-  public deleteItemDetails(id: string) {}
+  public deleteItemDetails(id: string) {
+    this.item.userItems = this.item.userItems.filter(itemDetail => itemDetail._id !== id);
+    this.itemService.editItem(this.item)
+    .subscribe(
+      (itemDeleted) => {
+        console.log(itemDeleted);
+        this.router.navigateByUrl('');
+      },
+      (error) => console.log(error)
+    );
+  }
 
   public deleteRecord(id: string) {}
 
