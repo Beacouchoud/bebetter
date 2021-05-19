@@ -16,8 +16,9 @@ export class FriendService {
     return this.http.post(environment.URL_API + '/addFriend', friend);
   }
 
-  deleteFriend(friend: string): Observable<any> {
-    return this.http.put(environment.URL_API + '/friend', friend);
+  deleteFriend(username: string, friend: string): Observable<any> {
+    console.log("servicio");
+    return this.http.post(environment.URL_API + '/deleteFriend', {friend: friend, owner: username});
   }
 
   sendFriendshipRequest(userUsername: string, friendUsername): Observable<any> {
@@ -29,7 +30,7 @@ export class FriendService {
   }
 
   getAllFriends(userUsername: string): Observable<any> {
-    return this.http.put(environment.URL_API + '/friends', userUsername);
+    return this.http.get(environment.URL_API + '/friends/'+userUsername);
   }
 
   getAllFriendshipRequests(userUsername: string): Observable<any> {

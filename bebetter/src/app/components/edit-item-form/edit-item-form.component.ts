@@ -61,11 +61,9 @@ export class EditItemFormComponent implements OnInit {
   }
 
   public editItem() {
-    console.log("prueba")
     if (this.form.valid) {
       //mandamos el item completo modificado
       this.getItem();
-      console.log("mandamos el item modificado:")
       this.item.userItems.forEach((item, i) => {
          if (item._id === this.itemDetail._id) {
            this.item.userItems[i] = this.form.getRawValue();

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IUser } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 
@@ -18,8 +20,9 @@ export class UserSettingsComponent implements OnInit {
   public error2: boolean;
   public errorCode2: string;
   public msg2: string;
+  private user: IUser;
 
-  constructor(private fb: FormBuilder, private utils: UtilsService) {
+  constructor(private fb: FormBuilder, private utils: UtilsService, private userService: UserService) {
     utils.setEnableTitle(true);
   }
 
@@ -30,8 +33,8 @@ export class UserSettingsComponent implements OnInit {
 
   private initFormUserData(): void {
     this.formUserData = this.fb.group({
-      name: [null, [Validators.required]],
-      email: [null, [Validators.email, Validators.required]]
+      name: [this.user.name, [Validators.required]],
+      email: [this.user.email, [Validators.email, Validators.required]]
     });
   }
 
@@ -44,11 +47,30 @@ export class UserSettingsComponent implements OnInit {
 
 
   confirmChanges() {
-
+    if (this.formUserData.valid) {
+      //mandamos el item completo modificado
+      this.user.name = this.formUserData.controls['name'].value;
+      this.user.email = this.formUserData.controls['email'].value;
+      this.userService.updateUser(this.user.username, this.user)
+      .subscribe((user: IUser) =>
+                        { this.user = user;
+                          this.userService.setLoggedUser(user);},
+                 (error) => console.log(error))
+    } else {
+      console.log(this.formUserData.controls) }
   }
 
   confirmNewPassword() {
-
+    if (this.formPassword.valid) {
+      this.userService.updateUserPwd(this.user.username, this.formPassword.getRawValue())
+      .subscribe((user: IUser) =>
+                        { this.user = user;
+                          this.userService.setLoggedUser(user);},
+                 (error) => console.log(error))
+    } else {
+      console.log(this.formUserData.controls)
+      //TODO indicar que las pwd no coinciden
+    }
   }
 
 }

@@ -14,8 +14,10 @@ exports.addFriend = async(req, res) => {
 
 //eliminar amigo
 exports.deleteFriend = async(req, res) => {
+    console.log("api");
+    console.log(req.body);
     try {
-        await friends.updateOne({ "$pull": { "friends":  req.params.friendUsername} });
+        await friends.findOneAndUpdate({"owner": req.body.owner},{ "$pull": { "friends":  req.body.friend} });
         res.json({msg: 'Amigo eliminado'});
     } catch(error) {
         console.log(error);

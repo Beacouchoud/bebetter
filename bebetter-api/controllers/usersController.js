@@ -79,12 +79,15 @@ exports.listUsers = async(req, res) => {
 exports.getUser = async(req, res, next) => {
     try {
         const user = await users.findOne({"username":req.params.id});
-        if (!user.username) {
+        console.log(user);
+        if (null || !user.username) {
+            console.log('El usuario no existe');
             res.status(400).json({
                 msg: 'El usuario no existe'
             });
+        } else {
+            res.json(user);
         }
-        res.json(user);
     } catch (error) {
         console.log(error);
         res.status(400).json({
