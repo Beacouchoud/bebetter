@@ -6,8 +6,8 @@
     <ion-label>Public</ion-label>
   </ion-segment-button>
 </ion-segment>
-<ion-grid>
-  <ion-row style="overflow: scroll">
+<ion-grid style="overflow: scroll">
+  <ion-row >
     <ion-col *ngFor="let itemDetail of itemsFiltered">
       <div>
         <app-items [itemDetail]="itemDetail" ></app-items>

@@ -22,6 +22,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ViewItemComponent } from 'src/app/components/view-item/view-item.component';
 import { OverviewComponent } from 'src/app/components/overview/overview.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/components/dialog/dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -31,7 +36,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     IonicModule,
     SectionPageRoutingModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+
   ],
   declarations: [
     NewItemFormComponent,
@@ -46,7 +55,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ProfileComponent,
     UserSettingsComponent,
     ViewItemComponent,
-    OverviewComponent
-  ]
+    OverviewComponent,
+
+  ],
+  entryComponents: [],
+
 })
 export class SectionPageModule {}

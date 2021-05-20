@@ -71,3 +71,8 @@ ion-fab-button {
     --color: white;
   }
 }
+
+.my-outlined-dialog {
+  outline: 2px solid purple;
+}
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';

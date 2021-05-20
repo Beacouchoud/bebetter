@@ -27,6 +27,7 @@ export class UserSettingsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.userService.getLoggedUser();
     this.initFormUserData();
     this.initFormPassword();
   }
