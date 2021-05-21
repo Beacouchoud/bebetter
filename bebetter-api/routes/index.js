@@ -61,7 +61,7 @@ module.exports = function() {
     router.post('/deleteFriend', friendsController.deleteFriend);
 
     //enviar solicitud de amistad
-    router.put('/sendFriendshipRequest/:username', friendsController.sendFriendshipRequest);
+    router.post('/sendFriendshipRequest/:username', friendsController.sendFriendshipRequest);
 
     //rechazar solicitud amistad
     router.put('/deleteFriendshipRequest/:username', friendsController.discardFriendshipRequest);

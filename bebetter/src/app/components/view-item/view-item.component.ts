@@ -1,14 +1,17 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+} from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
 import { ItemService } from 'src/app/services/item.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { RecordService } from 'src/app/services/record.service';
 import { IRecord } from 'src/app/models/record.model';
 
 @Component({
@@ -17,14 +20,12 @@ import { IRecord } from 'src/app/models/record.model';
   styleUrls: ['./view-item.component.scss'],
 })
 export class ViewItemComponent implements OnInit {
-
-
   private itemDetail: IDetailItem;
   private item: IItem;
   private user: IUser;
   private owner: string;
   private date: Date;
-  private value: number;
+  public value: number;
 
   constructor(
     private router: Router,
@@ -33,9 +34,8 @@ export class ViewItemComponent implements OnInit {
     private utils: UtilsService,
     private itemService: ItemService,
     private userService: UserService,
-    public dialog: MatDialog) {
-
-  }
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.utils.setEnableTitle(true);
@@ -45,27 +45,32 @@ export class ViewItemComponent implements OnInit {
     this.getItem();
   }
 
-  get itemDetails(){
+  get itemDetails() {
     return this.itemDetail;
   }
 
   private getItem(): void {
-    this.itemService.getActiveItem(this.user.username)
-    .subscribe(item => this.item = item);
-    this.activateRouter.paramMap.subscribe(paramsMap =>
-       this.itemService.getDetailItem(paramsMap.get('id'), this.owner)
-        .subscribe(itemDetail => this.itemDetail = itemDetail)
-       );
+    this.itemService
+      .getActiveItem(this.user.username)
+      .subscribe((item) => (this.item = item));
+    this.activateRouter.paramMap.subscribe((paramsMap) =>
+      this.itemService
+        .getDetailItem(paramsMap.get('id'), this.owner)
+        .subscribe((itemDetail) => (this.itemDetail = itemDetail))
+    );
   }
 
   public navigateToEditItem(): void {
-    this.router.navigate(['../../EditItem/'+this.itemDetail._id], {relativeTo: this.activateRouter});
+    this.router.navigate(['../../EditItem/' + this.itemDetail._id], {
+      relativeTo: this.activateRouter,
+    });
   }
 
   public deleteItemDetails(id: string) {
-    this.item.userItems = this.item.userItems.filter(itemDetail => itemDetail._id !== id);
-    this.itemService.editItem(this.item)
-    .subscribe(
+    this.item.userItems = this.item.userItems.filter(
+      (itemDetail) => itemDetail._id !== id
+    );
+    this.itemService.editItem(this.item).subscribe(
       (itemDeleted) => {
         console.log(itemDeleted);
         this.router.navigateByUrl('');
@@ -75,32 +80,57 @@ export class ViewItemComponent implements OnInit {
   }
 
   public openDialog(): void {
-    console.log("abrir")
+    console.log('abrir');
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: {date: this.date, value: this.value, type: 'number'}
+      data: { date: this.date, value: this.value, type: 'number', text: 'Register value' },
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.addRecord({_id: null, value: result, date: this.date});
-      console.log(this.value);
+//TODO no recoge el valor del input bien
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.value = result;
+      this.addRecord({ _id: null, value: this.value, date: this.date });
+      // console.log(this.value);
     });
   }
 
   private addRecord(record: IRecord) {
     //editamos el item completo y lo enviamos a la api para guardarlo modificado
-    this.item.userItems.forEach((itemDetail) => { if(itemDetail._id === this.itemDetail._id){ this.itemDetail.records.push({_id: null, value: record.value, date: this.date})} });
-
-    this.itemService.editItem(this.item)
-    .subscribe(
-      (item) => {console.log(item); this.getItem()},
+    this.item.userItems.forEach((itemDetail) => {
+      if (itemDetail._id === this.itemDetail._id) {
+        this.itemDetail.records.push({
+          _id: null,
+          value: record.value,
+          date: this.date,
+        });
+      }
+    });
+    this.itemService.editItem(this.item).subscribe(
+      (item) => {
+        console.log(item);
+        this.getItem();
+      },
       (error) => console.log(error)
     );
   }
 
-
-  public deleteRecord(id: string) {}
+  public deleteRecord(id: string) {
+    this.item.userItems
+    .map((itemDetail) => {
+      if (itemDetail._id === this.itemDetail._id) {
+        this.itemDetail.records.splice(
+          this.itemDetail.records.findIndex((record) => record._id === id), 1
+        );
+      }
+    });
+    this.itemService.editItem(this.item).subscribe(
+      (item) => {
+        console.log(item);
+        this.getItem();
+      },
+      (error) => console.log(error)
+    );
+  }
 
   // async presentModal() {
   //   const modal = await this.modalController.create({
@@ -116,5 +146,4 @@ export class ViewItemComponent implements OnInit {
   //   const { data } = await modal.onWillDismiss();
   // console.log(data);
   // }
-
 }

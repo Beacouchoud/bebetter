@@ -29,7 +29,7 @@ exports.deleteFriend = async(req, res) => {
 //enviar solicitud de amistad
 exports.sendFriendshipRequest = async(req, res) => {
     try {
-        await friends.updateOne({ "$addToSet": { "friendshipRequests":  req.params.username} });
+        await friends.findOneAndUpdate({"owner": req.body.userUsername},{ "$addToSet": { "friendshipRequests":  req.body.friendUsername} });
         res.json({msg: 'Solicitud enviada'});
     } catch(error) {
         console.log(error);

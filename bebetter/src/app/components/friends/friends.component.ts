@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { IUser } from 'src/app/models/user.model';
 import { FriendService } from 'src/app/services/friend.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-friends',
@@ -18,7 +19,7 @@ export class FriendsComponent implements OnInit {
   private user: IUser;
   private searchTerm: string;
 
-  constructor(private utils: UtilsService, private friendService: FriendService, private userService: UserService) {
+  constructor(private utils: UtilsService, private friendService: FriendService, private userService: UserService, public dialog: MatDialog) {
     utils.setEnableTitle(true);
     this.friendsList = new Array();
     this.friendsUsernamesList = new Array();
@@ -40,6 +41,28 @@ export class FriendsComponent implements OnInit {
           // filtro vacio
           !this.searchTerm );
     });
+  }
+
+  public openDialog(): void {
+    console.log('abrir');
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {text: 'Enter a username'}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      this.sendFriendRequest(result);
+      console.log(result);
+    });
+  }
+
+  private sendFriendRequest(friendUsername: string) {
+    this.friendService.sendFriendshipRequest(this.user.username, friendUsername)
+    .subscribe(
+      (res) => console.log(res),
+      (error) => console.log(error)
+    );
   }
 
   // cambio de texto en filtro

@@ -1,13 +1,13 @@
 <h1 mat-dialog-title>Hi {{user.name}}</h1>
 <div mat-dialog-content>
-  <p>Register Value - {{data.date |  date:'dd/MM/yyyy'}}</p>
+  <p>{{data.text}} - {{data.date |  date:'dd/MM/yyyy'}}</p>
   <mat-form-field>
-    <mat-label>Register Value</mat-label>
-    <input [type]=data.type matInput>
+    <mat-label>{{data.text}}</mat-label>
+    <input [type]="data.type" matInput [(ngModel)]="data.value">
 
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.value" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
 </div>

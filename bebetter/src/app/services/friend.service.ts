@@ -22,7 +22,7 @@ export class FriendService {
   }
 
   sendFriendshipRequest(userUsername: string, friendUsername): Observable<any> {
-    return this.http.put(environment.URL_API + '/sendFriensdhipRequest', {userUsername: userUsername, friendUsername: friendUsername});
+    return this.http.post(environment.URL_API + '/sendFriensdhipRequest', {userUsername: userUsername, friendUsername: friendUsername});
   }
 
   deleteFriendshipRequest(userUsername: string, friendUsername): Observable<any> {
