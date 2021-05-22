@@ -6,10 +6,10 @@
   </ion-col>
   <ion-col size="8" class="ion-text-left">
     <h3>
-      User Name
+      {{userInfo?.name}}
     </h3>
-    <p>Username</p>
-    <p>Email@email.com</p>
+    <p>{{userInfo?.username}}</p>
+    <p>{{userInfo?.email}}</p>
   </ion-col>
 </ion-row>
 <ion-row>
@@ -42,104 +42,32 @@
     <h4 class="title2 ion-margin-end" >Notifications</h4>
   </ion-col>
 </ion-row>
-<ion-row  style="overflow: scroll">
+<ion-row class="listContainer">
   <ion-col>
         <ion-list>
-          <ion-row>
-            <ion-col size="12">
+          <ion-row *ngFor="let userRequest of friendshipRequests" >
+            <ion-col size="12" >
               <ion-item-sliding class="ion-padding-horizontal">
                 <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">
+                  <ion-item-option (click)="discardRequest(userRequest?.username)">
                     <ion-icon slot="icon-only" name="person-remove-outline"></ion-icon>
                   </ion-item-option>
                 </ion-item-options>
                 <ion-item class="item">
                   <ion-icon name="person-circle-outline" slot="start"></ion-icon>
                   <ion-label class="ion-text-wrap">
-                    <h1>User Name</h1>
+                    <h1>{{userRequest?.name}}</h1>
                     <p>Incoming Friend Request</p>
                   </ion-label>
                 </ion-item>
                 <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">
+                  <ion-item-option (click)="acceptRequest(userRequest?.username)">
                     <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
                   </ion-item-option>
                 </ion-item-options>
               </ion-item-sliding>
             </ion-col>
-            <ion-col size="12">
-              <ion-item-sliding class="ion-padding-horizontal">
-                <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-                <ion-item class="item">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  <p class="info">0 Units</p>
-                </ion-item>
-                <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item-sliding class="ion-padding-horizontal">
-                <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-                <ion-item class="item">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  <p class="info">0 Units</p>
-                </ion-item>
-                <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item-sliding class="ion-padding-horizontal">
-                <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-                <ion-item class="item">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  <p class="info">0 Units</p>
-                </ion-item>
-                <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item-sliding class="ion-padding-horizontal">
-                <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-                <ion-item class="item">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  <p class="info">0 Units</p>
-                </ion-item>
-                <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-col>
-            <ion-col size="12">
-              <ion-item-sliding class="ion-padding-horizontal">
-                <ion-item-options side="start">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-                <ion-item class="item">
-                  <ion-icon name="pin" slot="start"></ion-icon>
-                  <p class="info">0 Units</p>
-                </ion-item>
-                <ion-item-options side="end">
-                  <ion-item-option (click)="unread(item)">Unread</ion-item-option>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-col>
           </ion-row>
         </ion-list>
-
-
   </ion-col>
 </ion-row>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/user.model';
 import { FriendService } from 'src/app/services/friend.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,17 +19,21 @@ export class FriendsComponent implements OnInit {
   private friendsList: Array<IUser>
   private user: IUser;
   private searchTerm: string;
+  private date: Date;
+  private friendUsername: string;
 
-  constructor(private utils: UtilsService, private friendService: FriendService, private userService: UserService, public dialog: MatDialog) {
+  constructor(private utils: UtilsService, private friendService: FriendService, private userService: UserService, public dialog: MatDialog, private router: Router) {
     utils.setEnableTitle(true);
     this.friendsList = new Array();
     this.friendsUsernamesList = new Array();
     this.searchTerm = null;
+    this.date = null;
   }
 
   ngOnInit() {
     this.user = this.userService.getLoggedUser();
     this.getAllFriendsUsernames();
+    this.friendUsername = ''
   }
 
   public get friends() {
@@ -43,17 +48,26 @@ export class FriendsComponent implements OnInit {
     });
   }
 
-  public openDialog(): void {
+  public openDialogAddFriend(): void {
     console.log('abrir');
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: {text: 'Enter a username'}
+      data: {text: 'Enter a username', type: 'text', date: this.date, value: this.friendUsername}
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      this.sendFriendRequest(result);
-      console.log(result);
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        console.log('The dialog was closed');
+        this.userService.getUser(result).subscribe(
+          (user) => {
+            if(user.username != this.user.username && !this.friendsUsernamesList.includes(user.username)) {
+              this.sendFriendRequest(result);
+            } else {
+              console.log("error");
+            }
+          },
+          (error) => console.log(error)
+        );
     });
   }
 
@@ -109,12 +123,25 @@ export class FriendsComponent implements OnInit {
   }
 
   public visitFriend(friend: IUser) {
-    //TODO navegamos a pagina reports pero enviando el id del amigo, asi podemos ver sus items //filtar solo reports de items publicos
+    console.log(friend);
+    this.friendService.setActiveFriend(friend);
+    // this.router.navigate(['/Items']);
   }
 
-  public openDialogAddFriend(evt) {
-    //TODO abre dialogo con prompt para buscar username y enviar peticion de amistad
-    evt.srcElement.value;//recoge valor del elemento al hacer click(?)
-  }
+  // public openDialogAddFriend() {
+  //   //TODO abre dialogo con prompt para buscar username y enviar peticion de amistad
+  //   const dialogRef = this.dialog.open(DialogComponent, {
+  //     width: '250px',
+  //     data: { date: this.date, value: this.friendUsername, type: 'text', text: "Friend's username" },
+  //   });
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log('valor',result);
+  //     this.friendUsername = result;
+  //     if (this.friendUsername !== null && this.friendUsername !== undefined && this.friendUsername.toString().length > 0) {
+  //       this.sendFriendRequest(this.friendUsername);
+  //     }
+  //     this.friendUsername = '';
+  //   });
+  // }
 
 }

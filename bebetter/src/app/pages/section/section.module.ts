@@ -27,6 +27,7 @@ import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { FriendItemsComponent } from 'src/app/components/friend-items/friend-items.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,7 @@ import { MatButtonModule } from '@angular/material/button';
     UserSettingsComponent,
     ViewItemComponent,
     OverviewComponent,
-
+    FriendItemsComponent
   ],
   entryComponents: [],
 

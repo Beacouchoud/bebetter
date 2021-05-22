@@ -123,15 +123,28 @@ exports.updateUser = async(req, res, next) => {
 //actualizar contraseña de un usuario
 exports.updateUserPwd = async(req, res, next) => {
     try {
-        const user = await users.findOneAndUpdate(
-            {"username":req.params.id}, req.body, {new: true}
-        );
-        if (!user.username) {
-            res.status(400).json({
-                msg: 'El usuario no existe'
-            });
+        const user = await users.findOne({username: req.body.username})
+
+        if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+        } else {
+            var passwordIsValid = bcrypt.compareSync(
+            req.body.oldPassword,
+            user.password
+            );
+            if (!passwordIsValid) {
+                return res.status(401).send({
+                    message: "Invalid Password!"
+                });
+            } else {
+                let pwd = bcrypt.hashSync(req.body.newPassword, 8);
+                let updatedUser = await users.findOneAndUpdate({"username": req.body.username}, {"password": pwd});
+                if (!updatedUser) {
+                    res.json({msg: 'User not updated'});
+                }
+                res.json({user: updatedUser, msg: 'Password updated'});
+            }
         }
-        res.json( {msg: 'Usuario actualizado'});
     } catch (error) {
         console.log(error);
         res.status(400).json({

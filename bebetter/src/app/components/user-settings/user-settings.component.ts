@@ -64,13 +64,15 @@ export class UserSettingsComponent implements OnInit {
   confirmNewPassword() {
     if (this.formPassword.valid) {
       this.userService.updateUserPwd(this.user.username, this.formPassword.getRawValue())
-      .subscribe((user: IUser) =>
-                        { this.user = user;
-                          this.userService.setLoggedUser(user);},
-                 (error) => console.log(error))
+      .subscribe(
+        (data) => {
+          this.user = data.user;
+          this.userService.setLoggedUser(data.user);
+          console.log(data.msg)
+        },
+        (error) => console.log(error))
     } else {
       console.log(this.formUserData.controls)
-      //TODO indicar que las pwd no coinciden
     }
   }
 

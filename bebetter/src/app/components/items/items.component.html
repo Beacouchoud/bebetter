@@ -6,8 +6,8 @@
 
       </ion-col>
       <ion-col size="10">
-        <ion-card-title>{{itemDetail.title}}</ion-card-title>
-        <ion-card-subtitle>{{itemDetail.subtitle}}</ion-card-subtitle>
+        <ion-card-title>{{itemDetail?.title}}</ion-card-title>
+        <ion-card-subtitle>{{itemDetail?.subtitle}}</ion-card-subtitle>
       </ion-col>
     </ion-row>
 
@@ -15,11 +15,11 @@
   <ion-item class="item" >
     <ion-icon name="pin" slot="start"></ion-icon>
     <!-- TODO asegurarse de que los records se guardan ordenados (mas nuevos al principio) -->
-    <p class="info">{{record.value}} {{itemDetail.um}}</p>
-    <ion-button fill="outline" slot="end" [routerLink]="'/section/Home/ViewItem/'+ itemDetail._id" (click)="setDetailItemId()">View</ion-button>
+    <p class="info">{{record?.value}} {{itemDetail?.um}}</p>
+    <ion-button fill="outline" slot="end" [routerLink]="'/section/Home/ViewItem/'+ itemDetail?._id" (click)="setDetailItemId()">View</ion-button>
   </ion-item>
 
   <ion-card-content>
-    {{itemDetail.description}}
+    {{itemDetail?.description}}
   </ion-card-content>
 </ion-card>

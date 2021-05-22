@@ -18,10 +18,10 @@
             </ion-item-options>
             <ion-item class="item">
               <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-              <p class="info">{{friend.name}}</p>
+              <p class="info">{{friend?.name}}</p>
             </ion-item>
             <ion-item-options side="end">
-              <ion-item-option (click)="visitFriend(friend)">
+              <ion-item-option [routerLink]="'./Items'" (click)="visitFriend(friend)">
                 <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
               </ion-item-option>
             </ion-item-options>
@@ -36,7 +36,7 @@
 
 </ion-grid>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed" edge >
-  <ion-fab-button class="add-button" (click)="openDialogAddFriend($event)">
+  <ion-fab-button class="add-button" (click)="openDialogAddFriend()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

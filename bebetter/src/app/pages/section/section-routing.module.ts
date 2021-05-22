@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditItemFormComponent } from 'src/app/components/edit-item-form/edit-item-form.component';
+import { FriendItemsComponent } from 'src/app/components/friend-items/friend-items.component';
 import { FriendsComponent } from 'src/app/components/friends/friends.component';
 import { ItemsReportsComponent } from 'src/app/components/items-reports/items-reports.component';
 import { NewItemFormComponent } from 'src/app/components/new-item-form/new-item-form.component';
@@ -47,6 +48,13 @@ const routes: Routes = [
   },
   {
     path: 'Friends',
+    children: [
+      {
+        path: 'Items',
+        data: { title: 'Friend Items' },
+        component: FriendItemsComponent,
+      }
+    ],
     data: { title: 'Friends' },
     component: FriendsComponent,
   },
@@ -60,14 +68,6 @@ const routes: Routes = [
     data: { title: 'Settings' },
     component: UserSettingsComponent,
   }
-  // , {
-  //   path: 'Reports',
-  //   data: { title: 'Report' },
-  //   loadChildren: () =>
-  //     import('../../components/home/home.component').then(
-  //       (m) => m.HomeComponent
-  //     ),
-  // },
 ];
 
 @NgModule({

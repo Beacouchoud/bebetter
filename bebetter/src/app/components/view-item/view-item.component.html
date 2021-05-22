@@ -8,9 +8,9 @@
 
   <ion-row>
     <ion-col class="signin-title ion-padding-start">
-      <ion-title class="ion-no-padding">{{itemDetails.title}}</ion-title>
-      <p>{{itemDetails.subtitle}}</p>
-      <p class="description">{{itemDetails.description}}</p>
+      <ion-title class="ion-no-padding">{{itemDetails?.title}}</ion-title>
+      <p>{{itemDetails?.subtitle}}</p>
+      <p class="description">{{itemDetails?.description}}</p>
     </ion-col>
   </ion-row>
 
@@ -22,14 +22,14 @@
 
       <ion-list>
         <ion-row>
-          <ion-col size="12"  *ngFor="let record of itemDetails.records">
+          <ion-col size="12"  *ngFor="let record of itemDetails?.records">
             <ion-item-sliding class="ion-padding-horizontal">
               <ion-item class="item">
                 <ion-icon name="pin" slot="start"></ion-icon>
-                <p class="info">{{record.value}} {{itemDetails.um}}</p>
+                <p class="info">{{record?.value}} {{itemDetails?.um}}</p>
               </ion-item>
               <ion-item-options side="end">
-                <ion-item-option (click)="deleteRecord(record._id)">Delete</ion-item-option>
+                <ion-item-option (click)="deleteRecord(record?._id)">Delete</ion-item-option>
               </ion-item-options>
             </ion-item-sliding>
           </ion-col>
@@ -40,13 +40,13 @@
   </ion-row>
 
 
-  <ion-row class="ion-padding-vertical ion-margin-vertical">
+  <ion-row class="ion-padding-vertical ion-margin-vertical" >
 
   </ion-row>
 
-  <ion-row class="bottom">
+  <ion-row class="bottom ion-margin-top">
     <ion-col size="6">
-      <ion-button class="ion-float-start ion-padding delete-button" (click)="deleteItemDetails(itemDetails._id)">
+      <ion-button class="ion-float-start ion-padding delete-button" (click)="deleteItemDetails(itemDetails?._id)">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-col>

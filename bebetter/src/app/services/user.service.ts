@@ -48,8 +48,8 @@ export class UserService {
     return this.http.put(environment.URL_API + '/updateUser', {id, user});
   }
 
-  updateUserPwd(id: string, data: any): Observable<any> {
-    return this.http.post(environment.URL_API + '/updatePwd', {id, newPassword: data.newPassword1, oldPassword: data.password});
+  updateUserPwd(username: string, data: any): Observable<any> {
+    return this.http.post(environment.URL_API + '/updatePwd', {username, newPassword: data.newPassword, oldPassword: data.oldPassword});
   }
 
   deleteUser(id: string): Observable<any> {

@@ -13,7 +13,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token: string = sessionStorage.getItem('token');
+    const token: string = localStorage.getItem('token');
 
     let request = req;
 

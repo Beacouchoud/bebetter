@@ -18,6 +18,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, DialogComponent],
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

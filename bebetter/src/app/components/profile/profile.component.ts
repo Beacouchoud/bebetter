@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IFriends } from 'src/app/models/friend.model';
+import { IUser } from 'src/app/models/user.model';
+import { FriendService } from 'src/app/services/friend.service';
+import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -9,44 +13,70 @@ import { UtilsService } from 'src/app/services/utils.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public formUserData: FormGroup;
-  public error: boolean;
-  public errorCode: string;
-  public msg: string;
-  public formPassword: FormGroup;
-  public error2: boolean;
-  public errorCode2: string;
-  public msg2: string;
+  private friendsInfo: IFriends;
+  private friendshipRequestsList: Array<IUser>;
 
-  constructor(private fb: FormBuilder, private utils: UtilsService) {
-    utils.setEnableTitle(true);
+  constructor(private fb: FormBuilder, private utils: UtilsService, private friendsService: FriendService, private userService: UserService) {
+    this.friendsInfo = null;
+    this.friendshipRequestsList = new Array();
   }
 
   ngOnInit() {
-    this.initFormUserData();
-    this.initFormPassword();
+    this.utils.setEnableTitle(true);
+    this.getFriendsInfo();
   }
 
-  private initFormUserData(): void {
-    this.formUserData = this.fb.group({
-      name: [null, [Validators.required]],
-      email: [null, [Validators.email, Validators.required]]
-    });
+  public get friendshipRequests() {
+    return this.friendshipRequestsList;
   }
 
-  private initFormPassword(): void {
-    this.formPassword = this.fb.group({
-      oldPassword: [null, [Validators.minLength(8), Validators.required]],
-      newPassword: [null, [Validators.minLength(8), Validators.required]]
-    });
+  public get userInfo() {
+    return this.userService.getLoggedUser();
   }
 
-
-  confirmChanges() {
-
+  private getAllFriends() {
+    this.friendsInfo.friendshipRequests.map(username => this.getFriendsUser(username));
   }
 
-  confirmNewPassword() {
+  private getFriendsUser(username: string){
+    this.friendshipRequestsList = [];
+    this.userService.getUser(username)
+    .subscribe(
+     (friend) => {
+       console.log(friend);
+       this.friendshipRequestsList.push(friend);
+     },
+     (error) => console.log(error)
+   );
 
+ }
+
+  private getFriendsInfo(): void {
+    this.friendsService.getFriendsInfo(this.userInfo?.username).subscribe(
+      (info) => {
+        this.friendsInfo = info;
+        console.log(info);
+        this.getAllFriends();
+      },
+      (error) => console.log(error)
+      );
   }
+
+  public discardRequest(username: string) {
+    this.friendsService.deleteFriendshipRequest(this.userInfo.username, username).subscribe(
+      (info) => {console.log(info), this.getFriendsInfo()},
+      (error) => console.log(error)
+    );
+  }
+
+  public acceptRequest(username: string) {
+    this.friendsService.addFriend(this.userInfo.username, username).subscribe(
+      (info) => {
+        this.discardRequest(username);
+        console.log(info);
+      },
+      (error) => console.log(error)
+    );
+  }
+
 }

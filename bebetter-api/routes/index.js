@@ -26,7 +26,7 @@ module.exports = function() {
     router.put('/users/:id', usersController.updateUser);
 
     //actualiza contraseña de un usuario
-    router.put('/usersPwd/:id', usersController.updateUserPwd);
+    router.post('/updatePwd', usersController.updateUserPwd);
 
     //elimina todos los datos de un usuario
     router.delete('/users/:id', usersController.deleteUser);
@@ -55,16 +55,16 @@ module.exports = function() {
 
     
     //añadir nuevo amigo (aceptando solicitud de amistad)
-    router.post('/friend', friendsController.addFriend);
+    router.post('/addFriend', friendsController.addFriend);
 
     //eliminar amigo
     router.post('/deleteFriend', friendsController.deleteFriend);
 
     //enviar solicitud de amistad
-    router.post('/sendFriendshipRequest/:username', friendsController.sendFriendshipRequest);
+    router.post('/sendFriensdhipRequest', friendsController.sendFriendshipRequest);
 
     //rechazar solicitud amistad
-    router.put('/deleteFriendshipRequest/:username', friendsController.discardFriendshipRequest);
+    router.post('/deleteFriendshipRequest', friendsController.discardFriendshipRequest);
 
     //devuelve todos los amigos
     router.get('/friends/:owner', friendsController.listFriends);
@@ -72,6 +72,8 @@ module.exports = function() {
     //devuelve todas las solicitudes de amistad
     router.get('/frienshipRequests/:owner', friendsController.listFriendshipRequest);
 
+    //devuelve todas la informacion relacionada con los amigos del usuario 
+    router.get('/friendsInfo/:username', friendsController.getFriendsInfo)
 
 
     return router;

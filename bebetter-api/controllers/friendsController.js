@@ -3,7 +3,7 @@ const friends = require('../models/friends');
 //añadir nuevo amigo (aceptando solicitud de amistad)
 exports.addFriend = async(req, res) => {
     try {
-        await friends.updateOne({ "$addToSet": { "friends":  req.body.friendUsername} });
+        await friends.findOneAndUpdate({"owner": req.body.userUsername},{ "$addToSet": { "friends":  req.body.friendUsername} });
         res.json({msg: 'Nuevo amigo añadido'});
     } catch(error) {
         console.log(error);
@@ -41,7 +41,7 @@ exports.sendFriendshipRequest = async(req, res) => {
 //rechazar solicitud amistad
 exports.discardFriendshipRequest = async(req, res) => {
     try {
-        await friends.updateOne({ "$pull": { "friendshipRequests":  req.params.username} });
+        await friends.findOneAndUpdate({"owner": req.body.userUsername},{ "$pull": { "friendshipRequests":  req.body.friendUsername} });
         res.json({msg: 'Amigo eliminado'});
     } catch(error) {
         console.log(error);
@@ -73,3 +73,15 @@ exports.listFriendshipRequest = async(req, res) => {
         next();
     }
 };
+
+exports.getFriendsInfo = async(req, res) => {
+    try {
+        const allFriendsInfo = await friends.findOne({"owner": req.params.username});
+        console.log(allFriendsInfo);
+        res.json(allFriendsInfo);
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+        next();
+    }
+}

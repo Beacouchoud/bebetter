@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import {
   ActivatedRoute,
   ActivatedRouteSnapshot,
   Router,
 } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { IonList, ModalController } from '@ionic/angular';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
 import { ItemService } from 'src/app/services/item.service';
@@ -13,6 +13,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { IRecord } from 'src/app/models/record.model';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-item',
@@ -26,6 +27,7 @@ export class ViewItemComponent implements OnInit {
   private owner: string;
   private date: Date;
   public value: number;
+  @ViewChild(IonList) list: IonList;
 
   constructor(
     private router: Router,
@@ -43,6 +45,7 @@ export class ViewItemComponent implements OnInit {
     this.owner = this.user.username;
     this.date = new Date();
     this.getItem();
+    this.value = 0;
   }
 
   get itemDetails() {
@@ -83,14 +86,15 @@ export class ViewItemComponent implements OnInit {
     console.log('abrir');
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: { date: this.date, value: this.value, type: 'number', text: 'Register value' },
+      data: { date: this.date, value: this.value, type: 'number', text: 'Register value - ' },
     });
-//TODO no recoge el valor del input bien
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      console.log('valor',result);
       this.value = result;
-      this.addRecord({ _id: null, value: this.value, date: this.date });
-      // console.log(this.value);
+      if (this.value !== null && this.value !== undefined && this.value.toString().length > 0) {
+        this.addRecord({ _id: null, value: this.value, date: this.date });
+      }
+      this.value = 0;
     });
   }
 
@@ -98,13 +102,14 @@ export class ViewItemComponent implements OnInit {
     //editamos el item completo y lo enviamos a la api para guardarlo modificado
     this.item.userItems.forEach((itemDetail) => {
       if (itemDetail._id === this.itemDetail._id) {
-        this.itemDetail.records.push({
+        this.itemDetail.records.unshift({
           _id: null,
           value: record.value,
           date: this.date,
-        });
+        });;
       }
     });
+
     this.itemService.editItem(this.item).subscribe(
       (item) => {
         console.log(item);
@@ -112,6 +117,9 @@ export class ViewItemComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+
+
+    this.list.closeSlidingItems();
   }
 
   public deleteRecord(id: string) {
