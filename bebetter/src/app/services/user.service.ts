@@ -58,8 +58,10 @@ export class UserService {
 
   logout(): void {
     this.loggedUser = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
+    sessionStorage.clear();
+    localStorage.clear()
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('username');
     this.router.navigateByUrl('/signin');
   }
 

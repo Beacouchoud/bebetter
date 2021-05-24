@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const expressSanitizer = require('express-sanitizer');
 var sess;
 var jwt = require("jsonwebtoken");
+const items = require('../models/items');
 var secret = 'Shh, its a secret!';
 
 
@@ -17,13 +18,14 @@ exports.signup = async(req, res) => {
     }); 
     try {
     await user.save();
-    res.json({msg: 'Nuevo usuario creado'}); 
+    res.json({user: user, msg: 'Nuevo usuario creado'}); 
     } catch(error) {
         console.log(error);
         res.send(error);
         next();
     }
 };
+
 
 //inicia sesion
 exports.signin = (req, res) => {
@@ -118,8 +120,6 @@ exports.updateUser = async(req, res, next) => {
     }
 }
 
-
-
 //actualizar contraseña de un usuario
 exports.updateUserPwd = async(req, res, next) => {
     try {
@@ -153,8 +153,6 @@ exports.updateUserPwd = async(req, res, next) => {
         next();
     }
 }
-
-
 
 //elimina un usuario
 exports.deleteUser = async(req, res, next) => {

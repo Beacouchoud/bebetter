@@ -64,7 +64,11 @@ export class ProfileComponent implements OnInit {
 
   public discardRequest(username: string) {
     this.friendsService.deleteFriendshipRequest(this.userInfo.username, username).subscribe(
-      (info) => {console.log(info), this.getFriendsInfo()},
+      (info) => {
+        this.friendshipRequestsList = [];
+        console.log(info);
+        this.getFriendsInfo();
+      },
       (error) => console.log(error)
     );
   }

@@ -29,7 +29,7 @@ exports.deleteFriend = async(req, res) => {
 //enviar solicitud de amistad
 exports.sendFriendshipRequest = async(req, res) => {
     try {
-        await friends.findOneAndUpdate({"owner": req.body.userUsername},{ "$addToSet": { "friendshipRequests":  req.body.friendUsername} });
+        await friends.findOneAndUpdate({"owner": req.body.friendUsername},{ "$addToSet": { "friendshipRequests":  req.body.userUsername} });
         res.json({msg: 'Solicitud enviada'});
     } catch(error) {
         console.log(error);
@@ -79,6 +79,23 @@ exports.getFriendsInfo = async(req, res) => {
         const allFriendsInfo = await friends.findOne({"owner": req.params.username});
         console.log(allFriendsInfo);
         res.json(allFriendsInfo);
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+        next();
+    }
+}
+
+exports.createFriendsInfo = async(req, res) => {
+    console.log(req.body);
+    const friendsInfo = new friends({
+        'owner': req.body.owner, 
+        'friends': new Array(),
+        'friendshipRequests': new Array()
+    });
+    try {
+        await friendsInfo.save();
+        res.json({msg: 'Item inicial creado'}); 
     } catch (error) {
         console.log(error);
         res.send(error);

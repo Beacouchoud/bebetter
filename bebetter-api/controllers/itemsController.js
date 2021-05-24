@@ -22,6 +22,23 @@ exports.addItem = async(req, res) => {
 }
 
 
+exports.createFullItem = async(req, res) => {
+    console.log(req.body);
+    const item = new items(
+        {'owner': req.body.owner, 
+        'userItems': new Array()}
+    );
+    try {
+        await item.save();
+        res.json({msg: 'Item inicial creado'}); 
+    } catch(error) {
+        console.log(error);
+        res.send(error);
+        next();
+    }
+};
+
+
 //devuelve todos los items privados de un usuario
 exports.getFullItem = async(req, res) => {
     try {
@@ -34,19 +51,6 @@ exports.getFullItem = async(req, res) => {
         next();
     }
 };
-
-// //devuelve todos los items publicos de un usuario
-// exports.listPublicItems = async(req, res) => {
-//     try {
-//         const allItems = await items.find({"owner": req.params.owner, "userItems":[ {"private": false} ] });
-//         console.log(allItems);
-//         res.json(allItems);
-//     } catch (error) {
-//         console.log(error);
-//         res.send(error);
-//         next();
-//     }
-// };
 
 //obtener un item
 exports.getItem = async(req, res, next) => {
@@ -99,6 +103,22 @@ exports.deleteItem = async(req, res, next) => {
         }
         res.json({msg: 'El item ha sido eliminado'});
     } catch (error) {
+        res.status(400).json({
+            msg: 'Error al procesar la petición'
+        });
+    }
+}
+
+exports.addNewRecord = async(req, res, next) => {
+    console.log(req.body)
+    try {
+        let updateItem = await items.findOneAndUpdate(
+            { 'owner': req.body.owner, 'userItems._id': req.body.itemDetailsId},
+            { $push: {'userItems.$.records': {'value': req.body.record.value, 'date': req.body.record.date}}},
+            {new: true}
+        );
+        console.log(updateItem.records);
+    } catch(error) {
         res.status(400).json({
             msg: 'Error al procesar la petición'
         });

@@ -17,6 +17,10 @@ export class ItemService {
 
   constructor(protected http: HttpClient) { }
 
+  createFullItem(fullItem: object): Observable<any> {
+    return this.http.post(environment.URL_API + '/fullItem', fullItem);
+  }
+
   createItem(item: IItem): Observable<any> {
     return this.http.post(environment.URL_API + '/item', item);
   }
@@ -38,8 +42,8 @@ export class ItemService {
     if(this.activeItem)
       return of(this.activeItem.userItems.find(item => item._id == id));
     else {
+      if(!!owner) {owner = localStorage.getItem('username');}
       return this.getActiveItem(owner).pipe(map(item => item.userItems.find(item => item._id == id)));
-      // return this.activeItem.userItems.find(item => item._id == id);
     }
   }
 
@@ -48,25 +52,17 @@ export class ItemService {
     this.activeDetailItem = itemDetail;
   }
 
-  // getItem(id: string): Observable<any>{
-  //   return this.http.get(environment.URL_API + '/getItem/' + id);
-  // }
+  getActiveDetailItem() :string {
+    return sessionStorage.getItem('lastDetailItem');
+  }
 
   getFullItem(owner: string): Observable<IItem> {
     return this.http.get<IItem>(environment.URL_API + '/getFullItem/' + owner);
   }
 
-  // getPrivateItemsList(owner: string): Observable<any> {
-  //   return this.http.get(environment.URL_API + '/privateItems/' + owner).pipe(
-  //     map(items => items as Array<IItem>)
-  //   );
-  // }
-
-//TODO revisar
-  // getRecordsFromItem(id: string): Observable<any> {
-  //   return this.getItem('id').pipe(
-  //      map(item => item.records as Array<IRecord>)
-  //   );
-  // }
+  addRecord(owner: string, itemDetailId: string, record: IRecord): Observable<any> {
+    console.log('servicio:', owner, itemDetailId, record);
+    return this.http.post(environment.URL_API + '/addNewRecord', {'owner': owner, 'itemDetailsId': itemDetailId, 'record': {'value': record.value, 'date': record.date}});
+  }
 
 }

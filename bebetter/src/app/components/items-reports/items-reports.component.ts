@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
 import { ItemService } from 'src/app/services/item.service';
@@ -13,17 +13,17 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ItemsReportsComponent implements OnInit {
 
   public panelOpenState: false;
-  private user: IUser;
-  private item: IItem;
+  @Input() public user: IUser;
+  @Input() public item: IItem;
+  // private user: IUser;
+  // private item: IItem;
 
   constructor(private utils: UtilsService, private itemService: ItemService, private userService: UserService) {
-    this.user = null;
-    this.item = null;
   }
 
   ngOnInit() {
     this.utils.setEnableTitle(true);
-    this.user = this.userService.getLoggedUser();
+    this.user =  !!this.user ?  this.user : this.userService.getLoggedUser();
     this.getItem();
   }
 

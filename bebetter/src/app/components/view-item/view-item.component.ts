@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {
-  ActivatedRoute,
-  ActivatedRouteSnapshot,
-  Router,
-} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import { IonList, ModalController } from '@ionic/angular';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
@@ -13,7 +9,6 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { IRecord } from 'src/app/models/record.model';
-import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-item',
@@ -49,18 +44,24 @@ export class ViewItemComponent implements OnInit {
   }
 
   get itemDetails() {
+    this.itemDetail.records.sort((a, b) => new Date(b.date).getTime()-new Date(a.date).getTime() );
     return this.itemDetail;
   }
 
   private getItem(): void {
     this.itemService
       .getActiveItem(this.user.username)
-      .subscribe((item) => (this.item = item));
-    this.activateRouter.paramMap.subscribe((paramsMap) =>
+      .subscribe((item) => {
+        this.item = item;
+        this.itemDetail = item.userItems.filter(itemDetail => itemDetail._id === this.itemService.getActiveDetailItem())[0];
+      });
+    if(!!this.itemDetail) {
+      this.activateRouter.paramMap.subscribe((paramsMap) =>
       this.itemService
         .getDetailItem(paramsMap.get('id'), this.owner)
         .subscribe((itemDetail) => (this.itemDetail = itemDetail))
-    );
+      );
+    }
   }
 
   public navigateToEditItem(): void {
@@ -86,30 +87,66 @@ export class ViewItemComponent implements OnInit {
     console.log('abrir');
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: { date: this.date, value: this.value, type: 'number', text: 'Register value - ' },
+      data: {
+        date: this.date,
+        value: this.value,
+        type: 'number',
+        text: 'Register value - ',
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('valor',result);
+      console.log('valor', result);
       this.value = result;
-      if (this.value !== null && this.value !== undefined && this.value.toString().length > 0) {
-        this.addRecord({ _id: null, value: this.value, date: this.date });
+      if (
+        this.value !== null &&
+        this.value !== undefined &&
+        this.value.toString().length > 0
+      ) {
+        this.addRecord({value: this.value, date: this.date });
       }
       this.value = 0;
     });
   }
 
-  private addRecord(record: IRecord) {
+  private addRecord(record: any) {
     //editamos el item completo y lo enviamos a la api para guardarlo modificado
-    this.item.userItems.forEach((itemDetail) => {
+    // this.item.userItems.forEach((itemDetail) => {
+    //   if (itemDetail._id === this.itemDetail._id) {
+    //     this.itemDetail.records.unshift({_id: null,value: record.value, date: this.date}) ;} });
+
+    // this.itemService.editItem(this.item).subscribe(
+    //   (item) => {
+    //     console.log(item);
+    //     this.getItem();
+    //   },
+    //   (error) => console.log(error)
+    // );
+    console.log(this.user.username, this.itemDetail._id, record);
+    //TODO arreglar no actualiza despues el itemDetail
+    this.itemService.addRecord(this.user.username, this.itemDetail._id, record).subscribe(
+      (data) => console.log(data),
+      (error) => console.log(error)
+    );
+    // this.itemService.getDetailItem(this.itemDetail._id).subscribe(
+    //   (itemDetail) => {
+    //     console.log(itemDetail);
+    //     this.itemDetail = itemDetail;
+    //     !!this.itemDetail ? this.getItem() : this.itemDetail;
+    //   }
+    // );
+    !!this.item
+    ? this.getItem()
+    : this.itemDetail = this.item.userItems.filter(detailItem => detailItem._id === this.itemService.getActiveDetailItem())[0];
+  }
+
+  public deleteRecord(index: number) {
+    // this.itemDetails.records.splice(index, 1);
+    this.item.userItems.map((itemDetail) => {
       if (itemDetail._id === this.itemDetail._id) {
-        this.itemDetail.records.unshift({
-          _id: null,
-          value: record.value,
-          date: this.date,
-        });;
+        itemDetail.records.splice(index, 1);
       }
     });
-
+    console.log(this.item);
     this.itemService.editItem(this.item).subscribe(
       (item) => {
         console.log(item);
@@ -117,41 +154,6 @@ export class ViewItemComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-
-
-    this.list.closeSlidingItems();
   }
 
-  public deleteRecord(id: string) {
-    this.item.userItems
-    .map((itemDetail) => {
-      if (itemDetail._id === this.itemDetail._id) {
-        this.itemDetail.records.splice(
-          this.itemDetail.records.findIndex((record) => record._id === id), 1
-        );
-      }
-    });
-    this.itemService.editItem(this.item).subscribe(
-      (item) => {
-        console.log(item);
-        this.getItem();
-      },
-      (error) => console.log(error)
-    );
-  }
-
-  // async presentModal() {
-  //   const modal = await this.modalController.create({
-  //     component: NewRecordComponent,
-  //     cssClass: 'new-record'
-  //   });
-
-  //   this.handleModalDismiss(modal);
-  //   return await modal.present();
-  // }
-
-  // private async handleModalDismiss(modal) {
-  //   const { data } = await modal.onWillDismiss();
-  // console.log(data);
-  // }
 }

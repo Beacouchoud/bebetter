@@ -31,8 +31,9 @@ module.exports = function() {
     //elimina todos los datos de un usuario
     router.delete('/users/:id', usersController.deleteUser);
 
-    //cierra la sesión de un usuario
-    /* router.get('/logout', usersController.logout);   */ 
+
+    //crear  full item
+    router.post('/fullItem', itemsController.createFullItem);
 
     //crear nuevo item
     router.post('/item', itemsController.addItem);
@@ -40,17 +41,14 @@ module.exports = function() {
     //devuelve todos los items de un usuario
     router.get('/getFullItem/:owner', itemsController.getFullItem);
 
-    //devuelve todos los items publicos de un usuario
-    // router.get('/publicItems/:owner', itemsController.listPublicItems);
-
-    //obtener un item
-    // router.get('/item/:id', itemsController.getItem);
-
     //actualizar datos de un item
     router.put('/item', itemsController.updateItem);
 
     //elimina un item
     router.delete('/item/:id', itemsController.deleteItem);
+
+    //añade un record
+    router.post('/addNewRecord', itemsController.addNewRecord);
 
 
     
@@ -75,6 +73,7 @@ module.exports = function() {
     //devuelve todas la informacion relacionada con los amigos del usuario 
     router.get('/friendsInfo/:username', friendsController.getFriendsInfo)
 
+    router.post('/friendsInfo', friendsController.createFriendsInfo)
 
     return router;
 }

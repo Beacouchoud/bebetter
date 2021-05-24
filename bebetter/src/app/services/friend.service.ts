@@ -37,6 +37,10 @@ export class FriendService {
     }
   }
 
+  createFriendsInfo(fullItem: object): Observable<any> {
+    return this.http.post(environment.URL_API + '/friendsInfo', fullItem);
+  }
+
   addFriend(userUsername: string, friendUsername: string): Observable<any> {
     return this.http.post(environment.URL_API + '/addFriend', {userUsername: userUsername, friendUsername: friendUsername});
   }

@@ -1,31 +1,49 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    -- {{showMenu}} --
-    <ng-container *ngIf="showMenu">
-    <ion-menu contentId="main-content" type="overlay" >
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-avatar>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-          </ion-avatar>
-          <ion-list-header >User Name</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-          <ion-menu-toggle *ngFor="let p of appSections; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-      </ion-content>
-      <ion-footer>
-        <ion-item routerDirection="root" [routerLink]="'/signin'" lines="none" detail="false" (click)="logout()">
-          <ion-icon name="log-out" class="ion-margin-end"></ion-icon>
-          <ion-label class="ion-margin-start">Log Out</ion-label>
-        </ion-item>
-      </ion-footer>
-    </ion-menu>
-  </ng-container>
+    -- {{ showMenu }} --
+    <ng-container *ngIf="showMenu" >
+      <ion-menu contentId="main-content" type="overlay" >
+        <ion-content>
+          <ion-list id="inbox-list">
+            <ion-avatar>
+              <img
+                src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+              />
+            </ion-avatar>
+            <ion-list-header>User Name</ion-list-header>
+            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-menu-toggle *ngFor="let p of appSections; let i = index">
+              <ion-item
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                routerLinkActive="selected"
+              >
+                <ion-icon
+                  slot="start"
+                  [ios]="p.icon + '-outline'"
+                  [md]="p.icon + '-sharp'"
+                ></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+        </ion-content>
+        <ion-footer>
+          <ion-item
+            routerDirection="root"
+            [routerLink]="'/signin'"
+            lines="none"
+            detail="false"
+            (click)="logout()"
+          >
+            <ion-icon name="log-out" class="ion-margin-end"></ion-icon>
+            <ion-label class="ion-margin-start">Log Out</ion-label>
+          </ion-item>
+        </ion-footer>
+      </ion-menu>
+    </ng-container>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

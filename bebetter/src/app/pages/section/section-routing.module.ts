@@ -50,13 +50,16 @@ const routes: Routes = [
     path: 'Friends',
     children: [
       {
+        path: '',
+        data: { title: 'Friends' },
+        component: FriendsComponent,
+      },
+      {
         path: 'Items',
         data: { title: 'Friend Items' },
         component: FriendItemsComponent,
       }
     ],
-    data: { title: 'Friends' },
-    component: FriendsComponent,
   },
   {
     path: 'Profile',
