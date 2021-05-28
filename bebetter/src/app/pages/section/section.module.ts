@@ -11,8 +11,6 @@ import { HomeComponent } from 'src/app/components/home/home.component';
 import { ItemsComponent } from 'src/app/components/items/items.component';
 import { NewItemFormComponent } from 'src/app/components/new-item-form/new-item-form.component';
 import { EditItemFormComponent } from 'src/app/components/edit-item-form/edit-item-form.component';
-import { EditRecordComponent } from 'src/app/components/edit-record/edit-record.component';
-import { NewRecordComponent } from 'src/app/components/new-record/new-record.component';
 import { ItemsReportsComponent } from 'src/app/components/items-reports/items-reports.component';
 import { FriendsComponent } from 'src/app/components/friends/friends.component';
 import { ProfileComponent } from 'src/app/components/profile/profile.component';
@@ -49,8 +47,6 @@ import { FriendItemsComponent } from 'src/app/components/friend-items/friend-ite
     HomeComponent,
     ItemsComponent,
     EditItemFormComponent,
-    EditRecordComponent,
-    NewRecordComponent,
     ItemsReportsComponent,
     FriendsComponent,
     ProfileComponent,

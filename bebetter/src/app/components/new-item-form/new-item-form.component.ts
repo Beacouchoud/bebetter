@@ -28,12 +28,16 @@ export class NewItemFormComponent implements OnInit {
     private itemService: ItemService,
     private userService: UserService,
     private router: Router) {
-    utils.setEnableTitle(false);
     this.user = userService.getLoggedUser();
   }
 
   ngOnInit() {
+    this.utils.setEnableTitle(false);
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.utils.setEnableTitle(true);
   }
 
   private initForm(): void {

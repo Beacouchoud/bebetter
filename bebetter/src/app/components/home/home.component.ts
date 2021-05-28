@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(private utils: UtilsService, private itemService: ItemService, private userService: UserService) {
     this.item = null;
     this.privateItems = true;
+    this.utils.setEnableTitle(true);
   }
 
   ngOnInit() {

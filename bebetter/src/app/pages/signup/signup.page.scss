@@ -30,16 +30,23 @@ h1 {
    --border-color-checked: var(--color-orange);
 }
 
-// ion-item div.item-highligh .item-interactive .item-has-focus{
-//   --highlight-background: var(--color-pink) !important;
-//   --highlight-color-focused:red;
-// }
-
-
 ion-item.color-input {
-  // --border-color:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%) !important;
-  --highlight-color-focused:  linear-gradient(to left, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  --highlight-color-focused:  linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
   --highlight-height: 3px;
+}
+
+ion-item.ion-invalid, ion-item.ion-touched, ion-item.ion-untouched {
+  .item-highlight  {
+    background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+  }
+}
+
+.item-interactive.ion-invalid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
+}
+
+.item-interactive.ion-valid {
+  --highlight-background: linear-gradient(to right, rgba(233, 30, 99, 1) 0%, rgba(255, 143, 0, 1) 100%);
 }
 
 ion-text{

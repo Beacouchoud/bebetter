@@ -34,8 +34,13 @@ export class EditItemFormComponent implements OnInit {
 
 
   ngOnInit() {
+    this.utils.setEnableTitle(false);
     this.getItem();
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.utils.setEnableTitle(true);
   }
 
   private initForm(): void {
