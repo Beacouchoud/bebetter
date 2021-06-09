@@ -15,9 +15,20 @@ export class AppComponent {
     { title: 'Settings', url: '/section/Settings', icon: 'warning' },
   ];
 
+  private user;
+
   private menu: boolean;
 
   constructor(private utils: UtilsService, private userService: UserService) {
+    this.user = this.userService.getLoggedUser();
+  }
+
+  ngOnInit() {
+    this.user = this.userService.getLoggedUser();
+  }
+
+  public get loggedUser() {
+    return this.user;
   }
 
   public get showMenu () {

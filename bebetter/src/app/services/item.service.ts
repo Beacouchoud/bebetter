@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { newArray } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';

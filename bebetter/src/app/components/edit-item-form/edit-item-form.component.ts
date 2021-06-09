@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
 import { ItemService } from 'src/app/services/item.service';
@@ -31,7 +30,6 @@ export class EditItemFormComponent implements OnInit {
     this.user = userService.getLoggedUser();
     this.owner = this.user.username;
   }
-
 
   ngOnInit() {
     this.utils.setEnableTitle(false);

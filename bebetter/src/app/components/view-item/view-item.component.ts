@@ -1,14 +1,13 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import { IonList, ModalController } from '@ionic/angular';
 import { IDetailItem, IItem } from 'src/app/models/item.model';
 import { IUser } from 'src/app/models/user.model';
 import { ItemService } from 'src/app/services/item.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { IRecord } from 'src/app/models/record.model';
 
 @Component({
   selector: 'app-view-item',

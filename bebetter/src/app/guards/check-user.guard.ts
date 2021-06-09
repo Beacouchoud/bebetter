@@ -9,7 +9,6 @@ export class CheckUserGuard implements CanActivate {
 
   constructor(public router: Router) {}
 
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -18,8 +17,6 @@ export class CheckUserGuard implements CanActivate {
             this.router.navigateByUrl('/section');
             return false;
           }
-
     return true;
   }
-
 }
